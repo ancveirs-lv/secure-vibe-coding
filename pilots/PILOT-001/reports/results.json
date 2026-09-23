@@ -1,0 +1,202 @@
+{
+  "pilot_id": "PILOT-001",
+  "result": "PASS",
+  "baseline_version": "0.1.1",
+  "baseline_release": "v0.1.1",
+  "baseline_commit": "94f4a47ad8c6400d9b6fd15b9d7d6f904f0cc519",
+  "data_classification": "SYNTHETIC FIXTURES ONLY; NOT REAL PRODUCT SECURITY EVIDENCE",
+  "scope": "offline release-gate and input-contract checks, not software security validation",
+  "controls": 32,
+  "domains": 8,
+  "slop_indicators": 16,
+  "scenarios": [
+    {
+      "id": "blocked",
+      "expected_gate": "BLOCKED",
+      "observed_gate_en": "BLOCKED",
+      "observed_gate_lv": "BLOCKED",
+      "blocking_ids": [
+        "O02",
+        "A02",
+        "A03",
+        "D01",
+        "S01",
+        "G01",
+        "R01",
+        "R03"
+      ],
+      "gap_ids": [
+        "O02",
+        "O03",
+        "A02",
+        "A03",
+        "D01",
+        "S01",
+        "G01",
+        "R01",
+        "R03"
+      ],
+      "state_counts": {
+        "VERIFIED": 23,
+        "CLAIMED": 6,
+        "UNKNOWN": 2,
+        "IMPLEMENTED": 1
+      },
+      "complete_control_coverage": true,
+      "fixture_sha256": "fdea733dc1cde8d1f31bfda6f441e3248c32b3b2dc3893801fded071567268af"
+    },
+    {
+      "id": "conditional",
+      "expected_gate": "CONDITIONAL",
+      "observed_gate_en": "CONDITIONAL",
+      "observed_gate_lv": "CONDITIONAL",
+      "blocking_ids": [],
+      "gap_ids": [
+        "O03",
+        "D04",
+        "P04"
+      ],
+      "state_counts": {
+        "VERIFIED": 29,
+        "CLAIMED": 1,
+        "IMPLEMENTED": 2
+      },
+      "complete_control_coverage": true,
+      "fixture_sha256": "0e13457873fa2577e2c475cc204bcc24b27fa0573e9875354736da3efe9fccc7"
+    },
+    {
+      "id": "ready",
+      "expected_gate": "READY",
+      "observed_gate_en": "READY",
+      "observed_gate_lv": "READY",
+      "blocking_ids": [],
+      "gap_ids": [],
+      "state_counts": {
+        "VERIFIED": 32
+      },
+      "complete_control_coverage": true,
+      "fixture_sha256": "192ce9aa48a21f1c36ae873971a858fe4c956d32b27a3d5d71bb84a2d1e58bf2"
+    }
+  ],
+  "exit_contracts": [
+    {
+      "scenario": "blocked",
+      "language": "en",
+      "mode": "--fail-on-blocked",
+      "expected_exit": 2,
+      "observed_exit": 2
+    },
+    {
+      "scenario": "blocked",
+      "language": "en",
+      "mode": "--require-ready",
+      "expected_exit": 2,
+      "observed_exit": 2
+    },
+    {
+      "scenario": "blocked",
+      "language": "lv",
+      "mode": "--fail-on-blocked",
+      "expected_exit": 2,
+      "observed_exit": 2
+    },
+    {
+      "scenario": "blocked",
+      "language": "lv",
+      "mode": "--require-ready",
+      "expected_exit": 2,
+      "observed_exit": 2
+    },
+    {
+      "scenario": "conditional",
+      "language": "en",
+      "mode": "--fail-on-blocked",
+      "expected_exit": 0,
+      "observed_exit": 0
+    },
+    {
+      "scenario": "conditional",
+      "language": "en",
+      "mode": "--require-ready",
+      "expected_exit": 2,
+      "observed_exit": 2
+    },
+    {
+      "scenario": "conditional",
+      "language": "lv",
+      "mode": "--fail-on-blocked",
+      "expected_exit": 0,
+      "observed_exit": 0
+    },
+    {
+      "scenario": "conditional",
+      "language": "lv",
+      "mode": "--require-ready",
+      "expected_exit": 2,
+      "observed_exit": 2
+    },
+    {
+      "scenario": "ready",
+      "language": "en",
+      "mode": "--fail-on-blocked",
+      "expected_exit": 0,
+      "observed_exit": 0
+    },
+    {
+      "scenario": "ready",
+      "language": "en",
+      "mode": "--require-ready",
+      "expected_exit": 0,
+      "observed_exit": 0
+    },
+    {
+      "scenario": "ready",
+      "language": "lv",
+      "mode": "--fail-on-blocked",
+      "expected_exit": 0,
+      "observed_exit": 0
+    },
+    {
+      "scenario": "ready",
+      "language": "lv",
+      "mode": "--require-ready",
+      "expected_exit": 0,
+      "observed_exit": 0
+    }
+  ],
+  "negative_input_cases_rejected": [
+    "wrong_identity",
+    "missing_identity",
+    "wrong_version",
+    "missing_version",
+    "unknown_control",
+    "answers_list",
+    "verified_no_evidence",
+    "na_disallowed",
+    "na_missing_reason",
+    "unknown_state",
+    "unsupported_answer_field",
+    "nonstring_evidence",
+    "root_array"
+  ],
+  "sparse_input": "BLOCKED in EN/LV; gated exit=2",
+  "known_limitations": [
+    {
+      "id": "LIM-EVIDENCE-001",
+      "observed": "Fabricated nonempty evidence strings are accepted and can yield READY. Evidence authenticity is not established."
+    },
+    {
+      "id": "LIM-APPLICABILITY-002",
+      "observed": "A nonempty NOT_APPLICABLE reason is accepted where N/A is allowed; semantic truth is not verified."
+    },
+    {
+      "id": "LIM-DUPLICATE-003",
+      "observed": "Duplicate JSON answer keys are silently parsed last-wins; an earlier UNKNOWN can be overwritten by a later VERIFIED. This needs fail-closed parsing."
+    },
+    {
+      "id": "LIM-SYNTHETIC-004",
+      "observed": "No real product, security tooling output or independently authenticated evidence was assessed."
+    }
+  ],
+  "release_claim": "Structural decision-contract validation only; no production safety or compliance conclusion."
+}

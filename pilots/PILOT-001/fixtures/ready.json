@@ -1,0 +1,135 @@
+{
+  "assessment_id": "SVC",
+  "version": "0.1.1",
+  "scenario_id": "ready",
+  "answers": {
+    "O01": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for O01; not real product evidence."
+    },
+    "O02": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for O02; not real product evidence."
+    },
+    "O03": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for O03; not real product evidence."
+    },
+    "O04": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for O04; not real product evidence."
+    },
+    "A01": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for A01; not real product evidence."
+    },
+    "A02": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for A02; not real product evidence."
+    },
+    "A03": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for A03; not real product evidence."
+    },
+    "A04": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for A04; not real product evidence."
+    },
+    "D01": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for D01; not real product evidence."
+    },
+    "D02": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for D02; not real product evidence."
+    },
+    "D03": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for D03; not real product evidence."
+    },
+    "D04": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for D04; not real product evidence."
+    },
+    "S01": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for S01; not real product evidence."
+    },
+    "S02": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for S02; not real product evidence."
+    },
+    "S03": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for S03; not real product evidence."
+    },
+    "S04": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for S04; not real product evidence."
+    },
+    "I01": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for I01; not real product evidence."
+    },
+    "I02": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for I02; not real product evidence."
+    },
+    "I03": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for I03; not real product evidence."
+    },
+    "I04": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for I04; not real product evidence."
+    },
+    "G01": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for G01; not real product evidence."
+    },
+    "G02": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for G02; not real product evidence."
+    },
+    "G03": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for G03; not real product evidence."
+    },
+    "G04": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for G04; not real product evidence."
+    },
+    "P01": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for P01; not real product evidence."
+    },
+    "P02": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for P02; not real product evidence."
+    },
+    "P03": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for P03; not real product evidence."
+    },
+    "P04": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for P04; not real product evidence."
+    },
+    "R01": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for R01; not real product evidence."
+    },
+    "R02": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for R02; not real product evidence."
+    },
+    "R03": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for R03; not real product evidence."
+    },
+    "R04": {
+      "state": "VERIFIED",
+      "evidence": "SYNTHETIC TEST TOKEN for R04; not real product evidence."
+    }
+  }
+}

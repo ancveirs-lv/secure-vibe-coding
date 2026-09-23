@@ -74,6 +74,10 @@ A source reference indicates rationale/alignment, not copied official wording, c
 
 **Zigmārs Ancveirs** — technology leader, software engineer and independent cybersecurity researcher.
 
+## PILOT-001 — Controlled release-gate validation
+
+The [PILOT-001 reproducibility package](pilots/PILOT-001/README.md) exercises three **synthetic** `BLOCKED`, `CONDITIONAL` and `READY` scenarios in EN/LV, invalid-input rejection and CI exit modes. Its `READY` case demonstrates the tool's formal decision contract, **not** real product security or evidence authenticity.
+
 ## Licence
 
 Documentation and assessment data: **CC BY 4.0**. Code and automation: **MIT**.

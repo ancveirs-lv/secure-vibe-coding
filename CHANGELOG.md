@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — PILOT-001 structural validation
+
+- introduced deterministic synthetic `BLOCKED`, `CONDITIONAL` and `READY` scenarios with EN/LV parity checks;
+- exercised CI exit codes and rejected malformed/self-inconsistent assessment inputs;
+- documented that structurally valid `READY` does not authenticate evidence or prove production security;
+- added deterministic pilot reports to the primary CI workflow.
+
 ## 2026-09-23 — v0.1.1 release-contract hardening
 
 - completed the full MIT code licence and linked the full CC BY 4.0 terms;
