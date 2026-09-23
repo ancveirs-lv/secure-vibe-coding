@@ -1,0 +1,603 @@
+{
+  "schema_version": 1,
+  "assessment_id": "SVC",
+  "version": "0.1.0",
+  "language": "lv",
+  "canonical_language": "en",
+  "audience": "izstrādātāji, dibinātāji un komandas, kas izlaiž ar MI palīdzību veidotu programmatūru",
+  "assessment_type": "release_gate",
+  "states": [
+    {
+      "id": "UNKNOWN",
+      "label": "Nezināms",
+      "meaning": "Pašreizējo stāvokli nevar noteikt ar uzticamu informāciju vai pierādījumiem."
+    },
+    {
+      "id": "CLAIMED",
+      "label": "Apgalvots",
+      "meaning": "Prakse tiek apgalvota, bet nav noturīgu ieviešanas vai testa pierādījumu."
+    },
+    {
+      "id": "IMPLEMENTED",
+      "label": "Ieviests",
+      "meaning": "Prakse ir ieviesta produktā vai darba plūsmā un pastāv novērojami ieviešanas pierādījumi."
+    },
+    {
+      "id": "VERIFIED",
+      "label": "Verificēts",
+      "meaning": "Nesens tiešs tests, pārskats vai reproducējams artefakts pamato apgalvojumu; strukturētā ievadē vajadzīga pierādījuma piezīme."
+    },
+    {
+      "id": "NOT_APPLICABLE",
+      "label": "Nav attiecināms",
+      "meaning": "Kontrole patiešām neattiecas uz šo produktu vai darba plūsmu; to drīkst izmantot tikai tur, kur kontrole to pieļauj, un nepieciešams pamatojums."
+    }
+  ],
+  "domains": [
+    {
+      "id": "OWNERSHIP",
+      "title": "Atbildība un izpratne"
+    },
+    {
+      "id": "AUTH_ACCESS",
+      "title": "Autentifikācija un autorizācija"
+    },
+    {
+      "id": "DATA_SECRETS",
+      "title": "Dati un noslēpumi"
+    },
+    {
+      "id": "SUPPLY_CHAIN",
+      "title": "Atkarības un piegādes ķēde"
+    },
+    {
+      "id": "INPUT_LOGIC",
+      "title": "Ievades un biznesa loģika"
+    },
+    {
+      "id": "AGENT_TOOLING",
+      "title": "MI aģenti, MCP un rīku piekļuve"
+    },
+    {
+      "id": "DEPLOY_RUNTIME",
+      "title": "Izvietošana un izpildvide"
+    },
+    {
+      "id": "RELEASE_EVIDENCE",
+      "title": "Izlaišanas pierādījumi"
+    }
+  ],
+  "items": [
+    {
+      "id": "O01",
+      "domain": "OWNERSHIP",
+      "priority": "high",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Nosaukts cilvēks ir atbildīgs par izlaišanas lēmumu un saglabā atbildību par MI atbalstītām izmaiņām.",
+      "recommended_action": "Nosaki cilvēku, kurš atbild par izlaidumu, un fiksē, kurš drīkst apstiprināt vai noraidīt drošībai būtiskas izmaiņas.",
+      "evidence_examples": [
+        "izlaiduma atbildīgais CODEOWNERS vai izmaiņu ierakstā"
+      ]
+    },
+    {
+      "id": "O02",
+      "domain": "OWNERSHIP",
+      "priority": "high",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11"
+      ],
+      "prompt": "Komanda spēj izskaidrot izvietoto arhitektūru, uzticības robežas, datu plūsmas un ārējos servisus, nepaļaujoties uz MI rīku to rekonstruēšanai.",
+      "recommended_action": "Uzturi īsu arhitektūras un datu plūsmas aprakstu ar ieejas punktiem, glabātuvēm, ārējiem servisiem un uzticības robežām.",
+      "evidence_examples": [
+        "arhitektūras/datu plūsmas shēma vai ADR"
+      ]
+    },
+    {
+      "id": "O03",
+      "domain": "OWNERSHIP",
+      "priority": "normal",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": false,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11",
+        "owasp_asvs_500"
+      ],
+      "prompt": "Pirms publiskas izlaišanas ir identificēti ticami ļaunprātīgas izmantošanas scenāriji un drošībai būtiski uzticības pieņēmumi.",
+      "recommended_action": "Pieraksti svarīgākos uzbrucēja mērķus, uzticības pieņēmumus un atteices režīmus un pārvērt tos pārbaudēs.",
+      "evidence_examples": [
+        "draudu/ļaunprātīgas izmantošanas piezīme sasaistīta ar testiem"
+      ]
+    },
+    {
+      "id": "O04",
+      "domain": "OWNERSHIP",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "MI atbalstītās izmaiņas tiek pārskatītas kā diff, ietverot negaidītas vai ārpus uzdevuma veiktas izmaiņas.",
+      "recommended_action": "Pieprasi visa diff pārskatu un noraidi nesaistītas ģenerētas izmaiņas, nevis pieņem lielu necaurspīdīgu patch.",
+      "evidence_examples": [
+        "pārskata ieraksts, kas attiecas uz pilnu diff"
+      ]
+    },
+    {
+      "id": "A01",
+      "domain": "AUTH_ACCESS",
+      "priority": "high",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "owasp_asvs_500",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Autentifikācijai tiek izmantoti nostiprināti mehānismi, un drošībai būtiskas identitātes plūsmas netiek improvizētas ar ģenerētu kodu.",
+      "recommended_action": "Izmanto uzturētas autentifikācijas bibliotēkas vai platformas mehānismus un pārskati pieteikšanās, atkopšanas un sesiju plūsmas.",
+      "evidence_examples": [
+        "autentifikācijas dizaina/konfigurācijas pārskats"
+      ]
+    },
+    {
+      "id": "A02",
+      "domain": "AUTH_ACCESS",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Autorizācija tiek īstenota servera pusē katrai aizsargātai darbībai un objektam, nevis tikai lietotāja saskarnē.",
+      "recommended_action": "Pievieno servera puses tiesību pārbaudes resursa/darbības robežā un testē aizliegtos ceļus.",
+      "evidence_examples": [
+        "negatīvie autorizācijas testi"
+      ]
+    },
+    {
+      "id": "A03",
+      "domain": "AUTH_ACCESS",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Kur attiecināms, lietotāju, tenant un objektu līmeņa izolācija ir pārbaudīta ar negatīviem gadījumiem.",
+      "recommended_action": "Pārbaudi, vai viena identitāte nevar nolasīt vai mainīt citas identitātes objektus, mainot identifikatorus, maršrutus vai API izsaukumus.",
+      "evidence_examples": [
+        "IDOR/BOLA/tenant izolācijas testa pierādījumi"
+      ]
+    },
+    {
+      "id": "A04",
+      "domain": "AUTH_ACCESS",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Administratīvām, atkopšanas un citām augstas ietekmes funkcijām ir stingrākas piekļuves robežas, un tās netiek aizsargātas ar slēpšanu.",
+      "recommended_action": "Uzskaiti privileģētās funkcijas, pieprasi skaidru autorizāciju un atsevišķi pārbaudi atkopšanas un administrēšanas plūsmas.",
+      "evidence_examples": [
+        "privileģēto maršrutu uzskaite un negatīvie testi"
+      ]
+    },
+    {
+      "id": "D01",
+      "domain": "DATA_SECRETS",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Noslēpumi nav iekodēti kodā, commitoti, nosūtīti klientam vai ielīmēti MI promptos/kontekstā; produkcijas piekļuves dati tiek glabāti un ierobežoti atbilstoši.",
+      "recommended_action": "Pārvieto noslēpumus piemērotā noslēpumu glabātuvē, rotē atklātos piekļuves datus un pievieno repozitorija/konteksta izņēmumus.",
+      "evidence_examples": [
+        "noslēpumu skenējums un secret-store/konfigurācijas pierādījumi"
+      ]
+    },
+    {
+      "id": "D02",
+      "domain": "DATA_SECRETS",
+      "priority": "high",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai"
+      ],
+      "prompt": "MI rīki saņem tikai minimāli nepieciešamo projekta kontekstu, un sensitīvi faili, kur iespējams, ir izslēgti no rīka konteksta.",
+      "recommended_action": "Konfigurē MI rīka ignore/izņēmumu noteikumus un nepakļauj atslēgas, privātus datus, produkcijas dumpus vai regulētus datus nevajadzīgam kontekstam.",
+      "evidence_examples": [
+        "MI konteksta izņēmumu konfigurācija"
+      ]
+    },
+    {
+      "id": "D03",
+      "domain": "DATA_SECRETS",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Sensitīvi dati tiek minimizēti, aizsargāti pārsūtē un glabāšanā un, kur vajadzīgs, izslēgti vai aizklāti žurnālos.",
+      "recommended_action": "Dokumentē sensitīvos datus, noņem nevajadzīgu vākšanu un pārbaudi šifrēšanu, piekļuvi un žurnālu uzvedību.",
+      "evidence_examples": [
+        "datu uzskaite un glabāšanas/žurnālu verifikācija"
+      ]
+    },
+    {
+      "id": "D04",
+      "domain": "DATA_SECRETS",
+      "priority": "normal",
+      "required_state": "VERIFIED",
+      "release_blocking": false,
+      "na_allowed": true,
+      "source_refs": [
+        "nist_ssdf11"
+      ],
+      "prompt": "Svarīgiem pastāvīgiem datiem ir pārbaudīts atkopšanas ceļš, un destruktīvām darbībām ir definēti aizsardzības mehānismi.",
+      "recommended_action": "Pārbaudi svarīgu datu atjaunošanu un definē apstiprināšanu, rollback vai līdzvērtīgus aizsardzības mehānismus destruktīvām darbībām.",
+      "evidence_examples": [
+        "atjaunošanas tests vai destruktīvas darbības atkopšanas pierādījumi"
+      ]
+    },
+    {
+      "id": "S01",
+      "domain": "SUPPLY_CHAIN",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai"
+      ],
+      "prompt": "Katra MI ieteikta ārējā pakotne pirms instalēšanas ir pārbaudīta paredzētajā reģistrā un pārskatīta.",
+      "recommended_action": "Pirms pievienošanas pārbaudi pakotnes nosaukumu, reģistru, uzturētāju/vēsturi un nepieciešamību projektā.",
+      "evidence_examples": [
+        "atkarības pārskata ieraksts vai allowlist ieraksts"
+      ]
+    },
+    {
+      "id": "S02",
+      "domain": "SUPPLY_CHAIN",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "nist_ssdf11"
+      ],
+      "prompt": "Atkarību versijas tiek reproducējami atrisinātas, un pirms izlaišanas tiek veikta zināmu ievainojamību pārbaude.",
+      "recommended_action": "Commito lockfile vai līdzvērtīgus atrisināšanas datus un CI palaid ekosistēmai atbilstošu ievainojamību pārbaudi.",
+      "evidence_examples": [
+        "lockfile un atkarību audita rezultāts"
+      ]
+    },
+    {
+      "id": "S03",
+      "domain": "SUPPLY_CHAIN",
+      "priority": "normal",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": false,
+      "na_allowed": true,
+      "source_refs": [
+        "nist_ssdf11",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Atkarības tiek minimizētas, un būtiskām jaunām atkarībām ir fiksēts mērķis, licence un uzturēšanas/izcelsmes pārbaude.",
+      "recommended_action": "Noņem nevajadzīgas pakotnes un fiksē, kāpēc būtiskas atkarības ir vajadzīgas un uzticamas.",
+      "evidence_examples": [
+        "atkarību uzskaite/pārskata piezīme"
+      ]
+    },
+    {
+      "id": "S04",
+      "domain": "SUPPLY_CHAIN",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "nist_ssdf11",
+        "owasp_secure_coding_ai"
+      ],
+      "prompt": "CI/CD darbības, būvēšanas spraudņi un automatizācijas atkarības ir piesaistītas kontrolētām versijām vai citādi kontrolētas, un to tiesības ir minimizētas.",
+      "recommended_action": "Pārskati pipeline atkarības un tiesības; kur praktiski, piesaisti nemainīgām versijām un ierobežo tokenus.",
+      "evidence_examples": [
+        "CI konfigurācijas un tiesību pārskats"
+      ]
+    },
+    {
+      "id": "I01",
+      "domain": "INPUT_LOGIC",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Neuzticama ievade tiek validēta pēc sagaidāmās formas un garuma, un izvades/vaicājumu kontekstos tiek izmantota droša kodēšana vai parametrizācija.",
+      "recommended_action": "Definē ievades kontraktus un izmanto framework drošu renderēšanu, parametrizētus vaicājumus un kontekstam atbilstošu kodēšanu.",
+      "evidence_examples": [
+        "injekciju/validācijas testi"
+      ]
+    },
+    {
+      "id": "I02",
+      "domain": "INPUT_LOGIC",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Augsta riska parseriem un sinkiem, piemēram, URL, failiem, shell komandām un servera puses pieprasījumiem, ir skaidra validācija un izolācija.",
+      "recommended_action": "Pārskati failu augšupielādi, SSRF, komandu izpildi un parseru robežas; noņem nedrošus universālus izpildes ceļus.",
+      "evidence_examples": [
+        "SSRF/failu/komandu negatīvie testi"
+      ]
+    },
+    {
+      "id": "I03",
+      "domain": "INPUT_LOGIC",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Drošībai un naudai būtiskas biznesa invariantes tiek īstenotas servera pusē un, kur attiecināms, testētas pret atkārtojumu, konkurenci vai identifikatoru viltošanu.",
+      "recommended_action": "Ievies kritiskās invariantes servera puses loģikā un pievieno negatīvos, idempotences vai konkurences testus augstas ietekmes stāvokļu pārejām.",
+      "evidence_examples": [
+        "biznesa loģikas negatīvie testi"
+      ]
+    },
+    {
+      "id": "I04",
+      "domain": "INPUT_LOGIC",
+      "priority": "normal",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": false,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Ārēji sasniedzamām darbībām ir atbilstoši resursu limiti, pieprasījumu ierobežojumi, timeout un droša atteices uzvedība.",
+      "recommended_action": "Nosaki ierobežotus pieprasījumu/body/job limitus, rate control un timeout ļaunprātīgi izmantojamām vai dārgām darbībām.",
+      "evidence_examples": [
+        "izpildvides limitu konfigurācija"
+      ]
+    },
+    {
+      "id": "G01",
+      "domain": "AGENT_TOOLING",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "owasp_agentic_top10_2026"
+      ],
+      "prompt": "MI kodēšanas aģenti darbojas ar minimāli nepieciešamajām failu sistēmas, shell, tīkla, mākoņa un repozitorija tiesībām.",
+      "recommended_action": "Atdali izstrādes un produkcijas piekļuves datus un sandboxo vai ierobežo aģenta piekļuvi konkrētajam uzdevumam.",
+      "evidence_examples": [
+        "aģenta tiesību/sandbox konfigurācija"
+      ]
+    },
+    {
+      "id": "G02",
+      "domain": "AGENT_TOOLING",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "owasp_agentic_top10_2026"
+      ],
+      "prompt": "Destruktīvām, piekļuves datu sensitīvām un drošības robežu izmaiņām vajadzīgs apzināts cilvēka apstiprinājums, nevis vispārējs auto-accept.",
+      "recommended_action": "Atslēdz neierobežotu automātisku apstiprināšanu un definē darbības, kurām vienmēr vajadzīgs cilvēka apstiprinājums.",
+      "evidence_examples": [
+        "aģenta apstiprināšanas politikas konfigurācija"
+      ]
+    },
+    {
+      "id": "G03",
+      "domain": "AGENT_TOOLING",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "owasp_agentic_top10_2026"
+      ],
+      "prompt": "MCP serveri un citi pieslēgtie rīki ir skaidri uzticēti, ar minimālām tiesībām un ierobežotiem piekļuves datiem.",
+      "recommended_action": "Uzturi rīku allowlist, pārskati katra rīka iespējas un ierobežo piekļuves datus un tīkla sasniedzamību.",
+      "evidence_examples": [
+        "MCP/rīku uzskaite un tiesību pārskats"
+      ]
+    },
+    {
+      "id": "G04",
+      "domain": "AGENT_TOOLING",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "owasp_agentic_top10_2026"
+      ],
+      "prompt": "Issues, pull requesti, repozitorija faili, žurnāli un ielādēts tīmekļa saturs tiek uzskatīts par neuzticamām instrukcijām, ja to patērē MI aģents.",
+      "recommended_action": "Pirms aģenta izmantošanas pārskati neuzticamo kontekstu, ierobežo kontekstu/izejošo tīklu un pārbaudi rezultējošās izmaiņas pret netiešas prompt injection sekām.",
+      "evidence_examples": [
+        "aģenta konteksta pārskats vai ierobežota konteksta pierādījumi"
+      ]
+    },
+    {
+      "id": "P01",
+      "domain": "DEPLOY_RUNTIME",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Produkcijas konfigurācija ir nostiprināta: debug/test funkcijas un noklusējuma piekļuves dati ir atslēgti vai noņemti.",
+      "recommended_action": "Izveido atkārtojamu produkcijas hardening checklist un pārbaudi faktisko izpildvides konfigurāciju.",
+      "evidence_examples": [
+        "faktiskās produkcijas konfigurācijas pārbaude"
+      ]
+    },
+    {
+      "id": "P02",
+      "domain": "DEPLOY_RUNTIME",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Ārējā ekspozīcija ir apzināta: TLS, cookies, CORS, drošības galvenes, origins un publiskie endpointi ir konfigurēti produkta vajadzībām.",
+      "recommended_action": "Uzskaiti internetā sasniedzamos endpointus un pārbaudi transporta, pārlūka un drošības robežu iestatījumus, nevis pieņem ģenerētus noklusējumus.",
+      "evidence_examples": [
+        "ārējo endpointu un drošības galveņu/konfigurācijas verifikācija"
+      ]
+    },
+    {
+      "id": "P03",
+      "domain": "DEPLOY_RUNTIME",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500",
+        "nist_ssdf11"
+      ],
+      "prompt": "Datubāzes, objektu glabātuves, rindas un administratīvie servisi nav publiski eksponēti, ja vien tas nav skaidri vajadzīgs un aizsargāts.",
+      "recommended_action": "Pārbaudi tīkla ekspozīciju, mākoņa IAM un servisu piekļuves datus izvietotajā vidē.",
+      "evidence_examples": [
+        "izvietotās vides tīkla/IAM ekspozīcijas pierādījumi"
+      ]
+    },
+    {
+      "id": "P04",
+      "domain": "DEPLOY_RUNTIME",
+      "priority": "normal",
+      "required_state": "VERIFIED",
+      "release_blocking": false,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11",
+        "owasp_asvs_500"
+      ],
+      "prompt": "Būtiskām kļūmēm pēc izlaišanas pastāv operacionāla žurnālošana, brīdinājumi, rollback un incidenta atbildība.",
+      "recommended_action": "Definē, kas tiks monitorēts, kurš saņem brīdinājumus, kā tiek atsaukts slikts izlaidums un kurš pieņem incidenta lēmumus.",
+      "evidence_examples": [
+        "monitoringa/brīdinājumu/rollback runbook vai tests"
+      ]
+    },
+    {
+      "id": "R01",
+      "domain": "RELEASE_EVIDENCE",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "openssf_ai_instructions",
+        "owasp_asvs_500"
+      ],
+      "prompt": "Drošībai kritiskiem ceļiem ir automatizēti pozitīvie un negatīvie testi, ietverot aizlieguma gadījumus, nevis tikai happy path.",
+      "recommended_action": "Pievieno testus, kas pierāda, ka neautorizētas, nepareizas un nedrošas darbības tiek noraidītas kā paredzēts.",
+      "evidence_examples": [
+        "CI testa izpilde ar nosauktiem negatīvajiem drošības testiem"
+      ]
+    },
+    {
+      "id": "R02",
+      "domain": "RELEASE_EVIDENCE",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "openssf_ai_instructions",
+        "nist_ssdf11"
+      ],
+      "prompt": "Drošībai sensitīvas MI ģenerētas izmaiņas saņem pārskatu, kas ir neatkarīgs no tā paša ģenerēšanas soļa.",
+      "recommended_action": "Izmanto cilvēka pārskatītāju un/vai deterministiskus drošības rīkus; neuzskati ģenerējošā modeļa pašpārbaudi par vienīgo assurance.",
+      "evidence_examples": [
+        "cilvēka pārskats un rīku rezultāti"
+      ]
+    },
+    {
+      "id": "R03",
+      "domain": "RELEASE_EVIDENCE",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Pirms izlaišanas tiek palaistas noslēpumu, atkarību un koda/konfigurācijas drošības pārbaudes, un izņēmumiem ir īpašnieks un pamatojums.",
+      "recommended_action": "CI palaid atbilstošas automatizētas pārbaudes un fiksē, kāpēc drošības atradums tiek apspiests vai pieņemts.",
+      "evidence_examples": [
+        "CI drošības pārbaužu rezultāti un izņēmumu ieraksts"
+      ]
+    },
+    {
+      "id": "R04",
+      "domain": "RELEASE_EVIDENCE",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11"
+      ],
+      "prompt": "Izlaidumu var sasaistīt ar commit, būvējuma/konfigurācijas stāvokli, atkarību kopu, zināmajām nepilnībām un reproducējamu gate rezultātu.",
+      "recommended_action": "Izveido nelielu izlaišanas pierādījumu pakotni, lai vēlāk var rekonstruēt, kas tika izlaists un kāpēc gate tika iziets.",
+      "evidence_examples": [
+        "izlaiduma manifests ar commit/būvējuma/gate pierādījumiem"
+      ]
+    }
+  ]
+}

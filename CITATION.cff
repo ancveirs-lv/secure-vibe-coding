@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this baseline, please cite it."
+title: "Anti-AI-Slop — Secure Vibe Coding Baseline"
+version: "0.1.0"
+date-released: "2026-09-23"
+authors:
+  - family-names: "Ancveirs"
+    given-names: "Zigmārs"
+repository-code: "https://github.com/ancveirs-lv/secure-vibe-coding"
+license: "CC-BY-4.0"

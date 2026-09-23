@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0",
+  "language": "lv",
+  "indicators": [
+    {
+      "id": "SLOP01",
+      "text": "MI apstiprinājums tiek uzskatīts par pierādījumu, ka kods ir drošs."
+    },
+    {
+      "id": "SLOP02",
+      "text": "Neviens nevar izskaidrot autentifikācijas vai autorizācijas plūsmu, vēlreiz nejautājot MI."
+    },
+    {
+      "id": "SLOP03",
+      "text": "Testi sedz ģenerētos happy path, bet ne aizliegtus vai ļaunprātīgus gadījumus."
+    },
+    {
+      "id": "SLOP04",
+      "text": "Pakotne tika instalēta tāpēc, ka MI to nosauca, nepārbaudot reģistru vai uzturētāju."
+    },
+    {
+      "id": "SLOP05",
+      "text": "Drošības brīdinājums tika noņemts, atslēdzot pārbaudi, nevis novēršot problēmu vai skaidri pieņemot risku."
+    },
+    {
+      "id": "SLOP06",
+      "text": "Klienta puses slēpšana vai maršruta noslēpums tiek izmantots kā autorizācija."
+    },
+    {
+      "id": "SLOP07",
+      "text": "Produkcijas noslēpumi vai dumpi ir pieejami kodēšanas aģenta kontekstam."
+    },
+    {
+      "id": "SLOP08",
+      "text": "Kodēšanas aģentam ikdienas uzdevumiem ir vispārējas shell, tīkla, mākoņa vai produkcijas tiesības."
+    },
+    {
+      "id": "SLOP09",
+      "text": "Neuzticams issue, PR, žurnāla vai tīmekļa saturs tiek tieši dots aģentam, kas var rīkoties repozitorijā."
+    },
+    {
+      "id": "SLOP10",
+      "text": "CORS, glabātuves, datubāzes vai tīkla ekspozīcija tika paplašināta, līdz aplikācija sāka darboties."
+    },
+    {
+      "id": "SLOP11",
+      "text": "Liels MI ģenerēts diff tiek mergeots, nesaprotot nesaistītās izmaiņas."
+    },
+    {
+      "id": "SLOP12",
+      "text": "Tas pats MI ģenerēšanas cikls ir vienīgais drošībai kritiskā koda pārskatītājs un testu autors."
+    },
+    {
+      "id": "SLOP13",
+      "text": "Neviens nezina, kura versija/konfigurācija faktiski tika izvietota."
+    },
+    {
+      "id": "SLOP14",
+      "text": "Nav pārbaudīta rollback vai atkopšanas ceļa sliktam izlaidumam vai destruktīvai datu izmaiņai."
+    },
+    {
+      "id": "SLOP15",
+      "text": "Drošības atradumi tiek apspiesti bez nosaukta īpašnieka un pamatojuma."
+    },
+    {
+      "id": "SLOP16",
+      "text": "Produkts ir publisks, lai gan kritiskas kontroles paliek UNKNOWN vai tikai CLAIMED."
+    }
+  ]
+}

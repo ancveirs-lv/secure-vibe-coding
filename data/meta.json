@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "repository": "ancveirs-lv/secure-vibe-coding",
+  "title_en": "Anti-AI-Slop — Secure Vibe Coding Baseline",
+  "title_lv": "Anti-AI-Slop — Drošības minimums MI atbalstītai programmatūras izstrādei",
+  "assessment_id": "SVC",
+  "version": "0.1.0",
+  "expected_item_count": 32,
+  "expected_domain_count": 8,
+  "expected_slop_indicator_count": 16,
+  "domain_ids": [
+    "OWNERSHIP",
+    "AUTH_ACCESS",
+    "DATA_SECRETS",
+    "SUPPLY_CHAIN",
+    "INPUT_LOGIC",
+    "AGENT_TOOLING",
+    "DEPLOY_RUNTIME",
+    "RELEASE_EVIDENCE"
+  ],
+  "state_ids": [
+    "UNKNOWN",
+    "CLAIMED",
+    "IMPLEMENTED",
+    "VERIFIED",
+    "NOT_APPLICABLE"
+  ],
+  "state_rank": {
+    "UNKNOWN": 0,
+    "CLAIMED": 1,
+    "IMPLEMENTED": 2,
+    "VERIFIED": 3
+  },
+  "gate_states": [
+    "BLOCKED",
+    "CONDITIONAL",
+    "READY"
+  ],
+  "global_english": true,
+  "status": "audited-pilot-baseline",
+  "anti_slop_definition_en": "Anti-AI-Slop is a project label for rejecting software changes that are accepted or deployed without sufficient understanding, constraints or evidence. It is not a claim that AI-generated code is inherently insecure.",
+  "anti_slop_definition_lv": "Anti-AI-Slop ir projekta apzīmējums programmatūras izmaiņu noraidīšanai, ja tās tiek pieņemtas vai izvietotas bez pietiekamas izpratnes, ierobežojumiem vai pierādījumiem. Tas nav apgalvojums, ka MI ģenerēts kods pats par sevi ir nedrošs.",
+  "method_note_en": "This is a release-readiness and evidence-gap instrument, not a certification, penetration test, compliance determination or guarantee of security.",
+  "method_note_lv": "Šis ir izlaišanas gatavības un pierādījumu nepilnību instruments, nevis sertifikācija, pentests, atbilstības noteikšana vai drošības garantija."
+}

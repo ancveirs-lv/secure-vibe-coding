@@ -1,0 +1,31 @@
+{
+  "assessment_id": "SVC",
+  "version": "0.1.0",
+  "answers": {
+    "O01": {
+      "state": "IMPLEMENTED"
+    },
+    "O02": {
+      "state": "CLAIMED"
+    },
+    "O04": {
+      "state": "VERIFIED",
+      "evidence": "Example review record: PR diff reviewed end-to-end."
+    },
+    "A02": {
+      "state": "VERIFIED",
+      "evidence": "Example only: negative authorization test run."
+    },
+    "D01": {
+      "state": "VERIFIED",
+      "evidence": "Example only: secret scan and secret-store config checked."
+    },
+    "G01": {
+      "state": "NOT_APPLICABLE",
+      "note": "Example project does not use an autonomous/tool-using coding agent."
+    },
+    "R01": {
+      "state": "CLAIMED"
+    }
+  }
+}

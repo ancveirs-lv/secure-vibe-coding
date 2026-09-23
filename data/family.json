@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "project": "secure-vibe-coding",
+  "positioning": "AI-assisted software release safety baseline",
+  "related_repositories": [
+    "https://github.com/ancveirs-lv/password-security",
+    "https://github.com/ancveirs-lv/cybersecurity-minimum",
+    "https://github.com/ancveirs-lv/cybersecurity-readiness-assessment"
+  ],
+  "boundary": "This project evaluates software release evidence. It does not replace the broader personal or organisational self-assessments."
+}

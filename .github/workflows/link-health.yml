@@ -1,0 +1,19 @@
+name: Source link health
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 5 17 * *"
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.13"
+      - run: python scripts/check_links.py

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "version": "0.1.0",
+  "language": "en",
+  "indicators": [
+    {
+      "id": "SLOP01",
+      "text": "AI approval is treated as proof that the code is secure."
+    },
+    {
+      "id": "SLOP02",
+      "text": "Nobody can explain the authentication or authorization flow without asking the AI again."
+    },
+    {
+      "id": "SLOP03",
+      "text": "Tests cover generated happy paths but not denied or malicious cases."
+    },
+    {
+      "id": "SLOP04",
+      "text": "A package was installed because the AI named it, without registry or maintainer verification."
+    },
+    {
+      "id": "SLOP05",
+      "text": "A security warning was removed by disabling the check rather than fixing or accepting the risk explicitly."
+    },
+    {
+      "id": "SLOP06",
+      "text": "Client-side hiding or route secrecy is used as authorization."
+    },
+    {
+      "id": "SLOP07",
+      "text": "Production secrets or dumps are exposed to the coding agent's context."
+    },
+    {
+      "id": "SLOP08",
+      "text": "The coding agent has blanket shell, network, cloud or production privileges for routine tasks."
+    },
+    {
+      "id": "SLOP09",
+      "text": "Untrusted issue, PR, log or web content is fed directly to an agent that can act on the repository."
+    },
+    {
+      "id": "SLOP10",
+      "text": "CORS, storage, database or network exposure was widened until the application started working."
+    },
+    {
+      "id": "SLOP11",
+      "text": "A large AI-generated diff is merged without understanding unrelated changes."
+    },
+    {
+      "id": "SLOP12",
+      "text": "The same AI generation loop is the only reviewer and test author for security-critical code."
+    },
+    {
+      "id": "SLOP13",
+      "text": "No one knows which version/configuration was actually deployed."
+    },
+    {
+      "id": "SLOP14",
+      "text": "There is no tested rollback or recovery path for a bad release or destructive data change."
+    },
+    {
+      "id": "SLOP15",
+      "text": "Security findings are suppressed without a named owner and rationale."
+    },
+    {
+      "id": "SLOP16",
+      "text": "The product is public even though critical controls remain UNKNOWN or merely CLAIMED."
+    }
+  ]
+}

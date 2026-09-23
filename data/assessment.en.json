@@ -1,0 +1,603 @@
+{
+  "schema_version": 1,
+  "assessment_id": "SVC",
+  "version": "0.1.0",
+  "language": "en",
+  "canonical_language": "en",
+  "audience": "developers, founders and teams shipping AI-assisted software",
+  "assessment_type": "release_gate",
+  "states": [
+    {
+      "id": "UNKNOWN",
+      "label": "Unknown",
+      "meaning": "The current state cannot be established with reliable information or evidence."
+    },
+    {
+      "id": "CLAIMED",
+      "label": "Claimed",
+      "meaning": "The practice is asserted, but there is no durable implementation or test evidence."
+    },
+    {
+      "id": "IMPLEMENTED",
+      "label": "Implemented",
+      "meaning": "The practice is present in the product or workflow and there is observable implementation evidence."
+    },
+    {
+      "id": "VERIFIED",
+      "label": "Verified",
+      "meaning": "A recent direct test, review or reproducible artefact supports the claim; structured input requires an evidence note."
+    },
+    {
+      "id": "NOT_APPLICABLE",
+      "label": "Not applicable",
+      "meaning": "The control genuinely does not apply to this product or workflow; only allowed where the control permits it and a rationale is required."
+    }
+  ],
+  "domains": [
+    {
+      "id": "OWNERSHIP",
+      "title": "Ownership and understanding"
+    },
+    {
+      "id": "AUTH_ACCESS",
+      "title": "Authentication and authorization"
+    },
+    {
+      "id": "DATA_SECRETS",
+      "title": "Data and secrets"
+    },
+    {
+      "id": "SUPPLY_CHAIN",
+      "title": "Dependencies and supply chain"
+    },
+    {
+      "id": "INPUT_LOGIC",
+      "title": "Inputs and business logic"
+    },
+    {
+      "id": "AGENT_TOOLING",
+      "title": "AI agents, MCP and tool access"
+    },
+    {
+      "id": "DEPLOY_RUNTIME",
+      "title": "Deployment and runtime"
+    },
+    {
+      "id": "RELEASE_EVIDENCE",
+      "title": "Release evidence"
+    }
+  ],
+  "items": [
+    {
+      "id": "O01",
+      "domain": "OWNERSHIP",
+      "priority": "high",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "A named human owns the release decision and remains accountable for AI-assisted changes.",
+      "recommended_action": "Name the human release owner and record who can approve or reject security-sensitive changes.",
+      "evidence_examples": [
+        "release owner in CODEOWNERS/change record"
+      ]
+    },
+    {
+      "id": "O02",
+      "domain": "OWNERSHIP",
+      "priority": "high",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11"
+      ],
+      "prompt": "The team can explain the deployed architecture, trust boundaries, data flows and external services without relying on the AI tool to reconstruct them.",
+      "recommended_action": "Maintain a concise architecture/data-flow record covering entry points, storage, external services and trust boundaries.",
+      "evidence_examples": [
+        "architecture/data-flow diagram or ADR"
+      ]
+    },
+    {
+      "id": "O03",
+      "domain": "OWNERSHIP",
+      "priority": "normal",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": false,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11",
+        "owasp_asvs_500"
+      ],
+      "prompt": "Plausible abuse cases and security-relevant trust assumptions have been identified before public release.",
+      "recommended_action": "Write down the most important attacker goals, trust assumptions and failure modes; convert them into checks.",
+      "evidence_examples": [
+        "threat/abuse-case note linked to tests"
+      ]
+    },
+    {
+      "id": "O04",
+      "domain": "OWNERSHIP",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "AI-assisted edits are reviewed as diffs, including unexpected or out-of-scope changes.",
+      "recommended_action": "Require review of the complete diff and reject unrelated generated changes instead of accepting a large opaque patch.",
+      "evidence_examples": [
+        "review record referencing the complete diff"
+      ]
+    },
+    {
+      "id": "A01",
+      "domain": "AUTH_ACCESS",
+      "priority": "high",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "owasp_asvs_500",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Authentication uses established mechanisms and security-sensitive identity flows are not improvised by generated code.",
+      "recommended_action": "Use maintained authentication libraries or platform mechanisms and review login, recovery and session flows.",
+      "evidence_examples": [
+        "authentication design/config review"
+      ]
+    },
+    {
+      "id": "A02",
+      "domain": "AUTH_ACCESS",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Authorization is enforced server-side for every protected action and object, not only in the UI.",
+      "recommended_action": "Add server-side permission checks at the resource/action boundary and test denied paths.",
+      "evidence_examples": [
+        "negative authorization tests"
+      ]
+    },
+    {
+      "id": "A03",
+      "domain": "AUTH_ACCESS",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Cross-user, cross-tenant and object-level isolation has been tested with negative cases where relevant.",
+      "recommended_action": "Test whether one identity can read or change another identity's objects by modifying identifiers, routes or API calls.",
+      "evidence_examples": [
+        "IDOR/BOLA/tenant-isolation test evidence"
+      ]
+    },
+    {
+      "id": "A04",
+      "domain": "AUTH_ACCESS",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Administrative, recovery and other high-impact functions have stronger access boundaries and are not protected by obscurity.",
+      "recommended_action": "Inventory privileged functions, require explicit authorization and verify recovery/admin flows separately.",
+      "evidence_examples": [
+        "privileged-route inventory and negative tests"
+      ]
+    },
+    {
+      "id": "D01",
+      "domain": "DATA_SECRETS",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Secrets are not hard-coded, committed, shipped to clients or pasted into AI prompts/context; production credentials are stored and scoped appropriately.",
+      "recommended_action": "Move secrets to an appropriate secret store, rotate exposed credentials and add repository/context exclusions.",
+      "evidence_examples": [
+        "secret scan plus secret-store/config evidence"
+      ]
+    },
+    {
+      "id": "D02",
+      "domain": "DATA_SECRETS",
+      "priority": "high",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai"
+      ],
+      "prompt": "AI tools receive only the minimum project context needed and sensitive files are excluded from tool context where supported.",
+      "recommended_action": "Configure AI-tool ignore/exclusion rules and avoid exposing keys, private data, production dumps or regulated content to unnecessary context.",
+      "evidence_examples": [
+        "AI context exclusion configuration"
+      ]
+    },
+    {
+      "id": "D03",
+      "domain": "DATA_SECRETS",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Sensitive data is minimized, protected in transit and storage, and excluded or redacted from logs where appropriate.",
+      "recommended_action": "Document sensitive data, remove unnecessary collection and verify encryption, access and logging behaviour.",
+      "evidence_examples": [
+        "data inventory plus storage/log verification"
+      ]
+    },
+    {
+      "id": "D04",
+      "domain": "DATA_SECRETS",
+      "priority": "normal",
+      "required_state": "VERIFIED",
+      "release_blocking": false,
+      "na_allowed": true,
+      "source_refs": [
+        "nist_ssdf11"
+      ],
+      "prompt": "Important persistent data has a recovery path that has been tested, and destructive operations have defined safeguards.",
+      "recommended_action": "Test restoration of important data and define confirmation/rollback or equivalent safeguards for destructive actions.",
+      "evidence_examples": [
+        "restore test or destructive-action recovery evidence"
+      ]
+    },
+    {
+      "id": "S01",
+      "domain": "SUPPLY_CHAIN",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai"
+      ],
+      "prompt": "Every AI-suggested external package is verified to exist in the intended registry and is reviewed before installation.",
+      "recommended_action": "Verify package name, registry, maintainer/history and project relevance before adding it.",
+      "evidence_examples": [
+        "dependency-review record or allowlist entry"
+      ]
+    },
+    {
+      "id": "S02",
+      "domain": "SUPPLY_CHAIN",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "nist_ssdf11"
+      ],
+      "prompt": "Dependency versions are reproducibly resolved and known-vulnerability checks run before release.",
+      "recommended_action": "Commit lockfiles or equivalent resolution data and run ecosystem-appropriate vulnerability checks in CI.",
+      "evidence_examples": [
+        "lockfile plus dependency-audit result"
+      ]
+    },
+    {
+      "id": "S03",
+      "domain": "SUPPLY_CHAIN",
+      "priority": "normal",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": false,
+      "na_allowed": true,
+      "source_refs": [
+        "nist_ssdf11",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Dependencies are minimized and material new dependencies have a recorded purpose, licence and maintenance/provenance check.",
+      "recommended_action": "Remove unnecessary packages and record why material dependencies are trusted and needed.",
+      "evidence_examples": [
+        "dependency inventory/review note"
+      ]
+    },
+    {
+      "id": "S04",
+      "domain": "SUPPLY_CHAIN",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "nist_ssdf11",
+        "owasp_secure_coding_ai"
+      ],
+      "prompt": "CI/CD actions, build plugins and automation dependencies are pinned or otherwise controlled, and their privileges are minimized.",
+      "recommended_action": "Review pipeline dependencies and permissions; pin immutable versions where practical and restrict tokens.",
+      "evidence_examples": [
+        "CI configuration and permission review"
+      ]
+    },
+    {
+      "id": "I01",
+      "domain": "INPUT_LOGIC",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Untrusted input is validated to expected shape and length, and output/query contexts use safe encoding or parameterization.",
+      "recommended_action": "Define input contracts and use framework-safe rendering, parameterized queries and context-appropriate encoding.",
+      "evidence_examples": [
+        "injection/validation tests"
+      ]
+    },
+    {
+      "id": "I02",
+      "domain": "INPUT_LOGIC",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "High-risk parsers and sinks such as URLs, files, shell commands and server-side fetches have explicit validation and isolation.",
+      "recommended_action": "Review file upload, SSRF, command execution and parser boundaries; remove unsafe generic execution paths.",
+      "evidence_examples": [
+        "SSRF/file/command negative tests"
+      ]
+    },
+    {
+      "id": "I03",
+      "domain": "INPUT_LOGIC",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Security- and money-relevant business invariants are enforced on the server and tested against replay, concurrency or identifier tampering where relevant.",
+      "recommended_action": "Encode critical invariants in server-side logic and add negative/idempotency/concurrency tests for high-impact state transitions.",
+      "evidence_examples": [
+        "business-logic negative tests"
+      ]
+    },
+    {
+      "id": "I04",
+      "domain": "INPUT_LOGIC",
+      "priority": "normal",
+      "required_state": "IMPLEMENTED",
+      "release_blocking": false,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Externally reachable operations have appropriate resource limits, rate controls, timeouts and fail-safe behaviour.",
+      "recommended_action": "Set bounded request/body/job limits, rate controls and timeouts for abuse-prone or expensive operations.",
+      "evidence_examples": [
+        "runtime limit configuration"
+      ]
+    },
+    {
+      "id": "G01",
+      "domain": "AGENT_TOOLING",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "owasp_agentic_top10_2026"
+      ],
+      "prompt": "AI coding agents run with the minimum filesystem, shell, network, cloud and repository privileges needed for the task.",
+      "recommended_action": "Separate development from production credentials and sandbox or scope agent access to the current task.",
+      "evidence_examples": [
+        "agent permission/sandbox configuration"
+      ]
+    },
+    {
+      "id": "G02",
+      "domain": "AGENT_TOOLING",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "owasp_agentic_top10_2026"
+      ],
+      "prompt": "Destructive, credential-sensitive and security-boundary changes require deliberate human approval rather than blanket auto-accept.",
+      "recommended_action": "Disable unrestricted auto-approval and define operations that always require human confirmation.",
+      "evidence_examples": [
+        "agent approval-policy configuration"
+      ]
+    },
+    {
+      "id": "G03",
+      "domain": "AGENT_TOOLING",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "owasp_agentic_top10_2026"
+      ],
+      "prompt": "MCP servers and other connected tools are explicitly trusted, minimally permissioned and use scoped credentials.",
+      "recommended_action": "Maintain a tool allowlist, review each tool's capabilities and restrict credentials and network reach.",
+      "evidence_examples": [
+        "MCP/tool inventory and permission review"
+      ]
+    },
+    {
+      "id": "G04",
+      "domain": "AGENT_TOOLING",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_secure_coding_ai",
+        "owasp_agentic_top10_2026"
+      ],
+      "prompt": "Issues, pull requests, repository files, logs and fetched web content are treated as untrusted instructions when consumed by an AI agent.",
+      "recommended_action": "Review untrusted context before agent use, limit context/egress and inspect resulting changes for indirect prompt injection effects.",
+      "evidence_examples": [
+        "agent-context review or constrained-context evidence"
+      ]
+    },
+    {
+      "id": "P01",
+      "domain": "DEPLOY_RUNTIME",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "Production configuration is hardened: debug/test features and default credentials are disabled or removed.",
+      "recommended_action": "Create a repeatable production-hardening checklist and verify effective runtime configuration.",
+      "evidence_examples": [
+        "effective production configuration check"
+      ]
+    },
+    {
+      "id": "P02",
+      "domain": "DEPLOY_RUNTIME",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500"
+      ],
+      "prompt": "External exposure is intentional: TLS, cookies, CORS, security headers, origins and public endpoints are configured to the product's needs.",
+      "recommended_action": "Inventory internet-facing endpoints and verify transport/browser/security-boundary settings instead of accepting generated defaults.",
+      "evidence_examples": [
+        "external endpoint and security-header/config verification"
+      ]
+    },
+    {
+      "id": "P03",
+      "domain": "DEPLOY_RUNTIME",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": true,
+      "source_refs": [
+        "owasp_asvs_500",
+        "nist_ssdf11"
+      ],
+      "prompt": "Databases, object storage, queues and administrative services are not publicly exposed unless explicitly required and protected.",
+      "recommended_action": "Verify network exposure, cloud IAM and service credentials from the deployed environment.",
+      "evidence_examples": [
+        "deployed network/IAM exposure evidence"
+      ]
+    },
+    {
+      "id": "P04",
+      "domain": "DEPLOY_RUNTIME",
+      "priority": "normal",
+      "required_state": "VERIFIED",
+      "release_blocking": false,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11",
+        "owasp_asvs_500"
+      ],
+      "prompt": "Operational logging, alerting, rollback and incident ownership exist for material failures after release.",
+      "recommended_action": "Define what will be monitored, who receives alerts, how a bad release is rolled back and who owns incident decisions.",
+      "evidence_examples": [
+        "monitor/alert/rollback runbook or test"
+      ]
+    },
+    {
+      "id": "R01",
+      "domain": "RELEASE_EVIDENCE",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "openssf_ai_instructions",
+        "owasp_asvs_500"
+      ],
+      "prompt": "Security-critical paths have automated positive and negative tests, including denial cases rather than only happy paths.",
+      "recommended_action": "Add tests that prove unauthorized, malformed and unsafe actions fail as intended.",
+      "evidence_examples": [
+        "CI test run with named negative security tests"
+      ]
+    },
+    {
+      "id": "R02",
+      "domain": "RELEASE_EVIDENCE",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "openssf_ai_instructions",
+        "nist_ssdf11"
+      ],
+      "prompt": "Security-sensitive AI-generated changes receive review that is independent of the same generation step.",
+      "recommended_action": "Use a human reviewer and/or deterministic security tooling; do not treat the generating model's self-review as sole assurance.",
+      "evidence_examples": [
+        "human review plus tool output"
+      ]
+    },
+    {
+      "id": "R03",
+      "domain": "RELEASE_EVIDENCE",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11",
+        "openssf_ai_instructions"
+      ],
+      "prompt": "Secret, dependency and code/configuration security checks run before release, and suppressions have an owner and rationale.",
+      "recommended_action": "Run appropriate automated checks in CI and record why any security finding is suppressed or accepted.",
+      "evidence_examples": [
+        "CI security-check results and exception record"
+      ]
+    },
+    {
+      "id": "R04",
+      "domain": "RELEASE_EVIDENCE",
+      "priority": "high",
+      "required_state": "VERIFIED",
+      "release_blocking": true,
+      "na_allowed": false,
+      "source_refs": [
+        "nist_ssdf11"
+      ],
+      "prompt": "The release can be tied to a commit, build/configuration state, dependency set, known gaps and a reproducible gate result.",
+      "recommended_action": "Produce a small release evidence bundle so a later reviewer can reconstruct what was shipped and why it passed the gate.",
+      "evidence_examples": [
+        "release manifest with commit/build/gate evidence"
+      ]
+    }
+  ]
+}
