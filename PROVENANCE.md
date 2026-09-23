@@ -1,7 +1,7 @@
 # Provenance
 
 Repository: `ancveirs-lv/secure-vibe-coding`
-Version: `0.1.0`
+Version: `0.1.1`
 Baseline date: `2026-09-23`
 Status: `audited-pilot-baseline`
 Author: Zigmārs Ancveirs

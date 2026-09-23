@@ -4,7 +4,7 @@
   "title_en": "Anti-AI-Slop — Secure Vibe Coding Baseline",
   "title_lv": "Anti-AI-Slop — Drošības minimums MI atbalstītai programmatūras izstrādei",
   "assessment_id": "SVC",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "expected_item_count": 32,
   "expected_domain_count": 8,
   "expected_slop_indicator_count": 16,

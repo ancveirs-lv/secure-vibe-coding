@@ -1,47 +1,124 @@
 from __future__ import annotations
-import argparse,json
+
+import argparse
+import json
 from collections import Counter
 from pathlib import Path
 
-ROOT=Path(__file__).resolve().parents[1]
-def load(p): return json.loads((ROOT/p).read_text(encoding="utf-8"))
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def load(path):
+    return json.loads((ROOT / path).read_text(encoding="utf-8"))
+
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument("answers"); ap.add_argument("--lang",choices=("en","lv"),default="en"); args=ap.parse_args()
-    a=load(f"data/assessment.{args.lang}.json"); m=load("data/meta.json")
-    payload=json.loads(Path(args.answers).read_text(encoding="utf-8"))
-    supplied=payload.get("answers",{})
-    valid=set(m["state_ids"]); ranks=m["state_rank"]
-    gaps=[]; blocking=[]; all_states=[]; na_items=[]; unknown=[]
-    for x in a["items"]:
-        raw=supplied.get(x["id"],"UNKNOWN")
-        if isinstance(raw,dict):
-            state=raw.get("state","UNKNOWN"); note=str(raw.get("note","")).strip(); evidence=str(raw.get("evidence","")).strip()
-        else:
-            state=raw; note=""; evidence=""
-        if state not in valid: raise SystemExit(f"invalid state for {x['id']}: {state}")
-        if state=="VERIFIED" and not evidence:
-            raise SystemExit(f"VERIFIED requires evidence for {x['id']}")
-        if state=="NOT_APPLICABLE":
-            if not x["na_allowed"]: raise SystemExit(f"NOT_APPLICABLE is not allowed for {x['id']}")
-            if not note: raise SystemExit(f"NOT_APPLICABLE requires note for {x['id']}")
-            na_items.append({"id":x["id"],"note":note}); all_states.append(state); continue
-        all_states.append(state)
-        if state=="UNKNOWN": unknown.append(x["id"])
-        meets=ranks[state] >= ranks[x["required_state"]]
-        if not meets:
-            g={"id":x["id"],"domain":x["domain"],"state":state,"required_state":x["required_state"],"priority":x["priority"],"release_blocking":x["release_blocking"],"recommended_action":x["recommended_action"]}
-            gaps.append(g)
-            if x["release_blocking"]: blocking.append(g)
-    gate="BLOCKED" if blocking else ("CONDITIONAL" if gaps else "READY")
-    result={
-        "assessment_id":a["assessment_id"],"version":a["version"],"language":args.lang,
-        "gate":gate,"overall_state_counts":dict(Counter(all_states)),
-        "unknown_items":unknown,"not_applicable_items":na_items,
-        "blocking_gaps":blocking,"all_gaps":gaps,
-        "note":"No aggregate security, compliance or maturity score is produced."
-    }
-    print(json.dumps(result,ensure_ascii=False,indent=2)); return 0
+    parser = argparse.ArgumentParser()
+    parser.add_argument("answers")
+    parser.add_argument("--lang", choices=("en", "lv"), default="en")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--fail-on-blocked", action="store_true")
+    mode.add_argument("--require-ready", action="store_true")
+    args = parser.parse_args()
 
-if __name__=="__main__":
+    assessment = load(f"data/assessment.{args.lang}.json")
+    meta = load("data/meta.json")
+    payload = json.loads(Path(args.answers).read_text(encoding="utf-8"))
+
+    if not isinstance(payload, dict):
+        raise SystemExit("assessment input must be a JSON object")
+    if payload.get("assessment_id") != meta["assessment_id"]:
+        raise SystemExit("assessment_id mismatch")
+    if payload.get("version") != meta["version"]:
+        raise SystemExit("version mismatch")
+
+    supplied = payload.get("answers")
+    if not isinstance(supplied, dict):
+        raise SystemExit("answers must be a JSON object")
+
+    items = assessment["items"]
+    known_ids = {item["id"] for item in items}
+    unknown_ids = set(supplied) - known_ids
+    if unknown_ids:
+        raise SystemExit("unknown control IDs: " + ", ".join(sorted(unknown_ids)))
+
+    valid = set(meta["state_ids"])
+    ranks = meta["state_rank"]
+    gaps, blocking, all_states, na_items, unknown = [], [], [], [], []
+
+    for item in items:
+        raw = supplied.get(item["id"], "UNKNOWN")
+        if isinstance(raw, dict):
+            extra_fields = set(raw) - {"state", "note", "evidence"}
+            if extra_fields:
+                raise SystemExit(
+                    f"unsupported answer fields for {item['id']}: "
+                    + ", ".join(sorted(extra_fields))
+                )
+            state = raw.get("state", "UNKNOWN")
+            note = raw.get("note", "")
+            evidence = raw.get("evidence", "")
+            if not isinstance(note, str) or not isinstance(evidence, str):
+                raise SystemExit(f"notes and evidence must be strings for {item['id']}")
+            note = note.strip()
+            evidence = evidence.strip()
+        else:
+            state, note, evidence = raw, "", ""
+
+        if not isinstance(state, str) or state not in valid:
+            raise SystemExit(f"invalid state for {item['id']}: {state}")
+        if state == "VERIFIED" and not evidence:
+            raise SystemExit(f"VERIFIED requires evidence for {item['id']}")
+        if state == "NOT_APPLICABLE":
+            if not item["na_allowed"]:
+                raise SystemExit(f"NOT_APPLICABLE is not allowed for {item['id']}")
+            if not note:
+                raise SystemExit(f"NOT_APPLICABLE requires note for {item['id']}")
+            na_items.append({"id": item["id"], "note": note})
+            all_states.append(state)
+            continue
+
+        all_states.append(state)
+        if state == "UNKNOWN":
+            unknown.append(item["id"])
+
+        if ranks[state] < ranks[item["required_state"]]:
+            gap = {
+                "id": item["id"],
+                "domain": item["domain"],
+                "state": state,
+                "required_state": item["required_state"],
+                "priority": item["priority"],
+                "release_blocking": item["release_blocking"],
+                "recommended_action": item["recommended_action"],
+            }
+            gaps.append(gap)
+            if item["release_blocking"]:
+                blocking.append(gap)
+
+    gate = "BLOCKED" if blocking else ("CONDITIONAL" if gaps else "READY")
+    result = {
+        "assessment_id": assessment["assessment_id"],
+        "version": assessment["version"],
+        "language": args.lang,
+        "gate": gate,
+        "overall_state_counts": dict(Counter(all_states)),
+        "unknown_items": unknown,
+        "not_applicable_items": na_items,
+        "blocking_gaps": blocking,
+        "all_gaps": gaps,
+        "note": (
+            "Evidence notes are self-reported and not validated automatically. "
+            "No aggregate security, compliance or maturity score is produced."
+        ),
+    }
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    if args.require_ready and gate != "READY":
+        return 2
+    if args.fail_on_blocked and gate == "BLOCKED":
+        return 2
+    return 0
+
+
+if __name__ == "__main__":
     raise SystemExit(main())

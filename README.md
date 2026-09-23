@@ -22,6 +22,8 @@ Possible gate results:
 - `CONDITIONAL` — release blockers are satisfied, but non-blocking gaps remain;
 - `READY` — all applicable controls meet their required evidence state.
 
+The tool checks that a verification evidence note exists, but **does not authenticate the evidence itself**; the release owner must inspect it. Inputs must declare matching `assessment_id` and `version`; unknown control IDs fail closed. Use `--fail-on-blocked` to make a `BLOCKED` gate fail CI, or `--require-ready` when any gap must fail CI.
+
 `VERIFIED` requires an evidence note. `NOT_APPLICABLE` is allowed only on controls that explicitly permit it and requires a rationale.
 
 ## Domains
@@ -66,7 +68,7 @@ A source reference indicates rationale/alignment, not copied official wording, c
 
 ## Audit status
 
-`v0.1.0` is an **audited pilot baseline**. Before publication, the candidate was reviewed in five directions: methodology, source fidelity, coverage/duplication, EN/LV localisation, and release-gate/evidence semantics. Findings and incorporated changes are recorded in `audits/2026-09-23-skeptical-audit.md`.
+`v0.1.1` is an **audited pilot baseline**. Before publication, the candidate was reviewed in five directions: methodology, source fidelity, coverage/duplication, EN/LV localisation, and release-gate/evidence semantics. Findings and incorporated changes are recorded in `audits/2026-09-23-skeptical-audit.md`.
 
 ## Author
 
