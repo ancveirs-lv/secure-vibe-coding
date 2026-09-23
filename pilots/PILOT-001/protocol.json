@@ -1,0 +1,52 @@
+{
+  "pilot_id": "PILOT-001",
+  "version": "1",
+  "date": "2026-09-23",
+  "baseline_repository": "ancveirs-lv/secure-vibe-coding",
+  "baseline_release": "v0.1.1",
+  "baseline_commit": "94f4a47ad8c6400d9b6fd15b9d7d6f904f0cc519",
+  "baseline_assessment_version": "0.1.1",
+  "data_type": "synthetic_fixture_only",
+  "scope": "CLI release-gate decision contract, bilingual semantics and fail-closed input handling",
+  "not_in_scope": [
+    "real products",
+    "real evidence verification",
+    "penetration testing",
+    "supply-chain artifact authentication",
+    "independent security certification"
+  ],
+  "expected_controls": 32,
+  "expected_domains": 8,
+  "expected_indicators": 16,
+  "expected_gates": {
+    "blocked": "BLOCKED",
+    "conditional": "CONDITIONAL",
+    "ready": "READY"
+  },
+  "expected_blocking_ids": [
+    "O02",
+    "A02",
+    "A03",
+    "D01",
+    "S01",
+    "G01",
+    "R01",
+    "R03"
+  ],
+  "expected_conditional_gap_ids": [
+    "O03",
+    "D04",
+    "P04"
+  ],
+  "known_limitations": [
+    "LIM-EVIDENCE-001",
+    "LIM-APPLICABILITY-002",
+    "LIM-DUPLICATE-003",
+    "LIM-SYNTHETIC-004"
+  ],
+  "pinned_input_sha256": {
+    "scripts/assess.py": "21454c16cce16da0c2a0862da1b36d4f061f2e994462a57ca678f574820d0534",
+    "data/assessment.en.json": "25f6cee95330a81235f6083bbabbbc25b1f49df189ba26a99722873354d5ea6d",
+    "data/assessment.lv.json": "40c9ed956809f24c17054ae0d6425c71b4ccb1b62b2f941bb09f8bf4d14917aa"
+  }
+}

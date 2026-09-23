@@ -13,3 +13,6 @@ check:
 
 assess:
 	$(PYTHON) scripts/assess.py examples/answers.example.json
+
+pilot:
+	$(PYTHON) pilots/PILOT-001/run_pilot.py --check

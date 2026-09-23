@@ -74,6 +74,10 @@ Avota atsauce nozīmē pamatojumu/saskaņojumu, nevis kopētu oficiālo formulē
 
 **Zigmārs Ancveirs** — tehnoloģiju vadītājs, programmatūras inženieris un neatkarīgs kiberdrošības pētnieks.
 
+## PILOT-001 — Kontrolēta izlaišanas nosacījumu validācija
+
+[PILOT-001 reproducējamais izmēģinājums](pilots/PILOT-001/README.lv.md) pārbauda trīs **sintētiskus** `BLOCKED`, `CONDITIONAL` un `READY` scenārijus abās valodās, kļūdainas ievades noraidīšanu un CI atgriešanās kodus. Scenārija `READY` rezultāts pierāda rīka formālo lēmuma loģiku, **nevis** reāla produkta drošību vai pierādījumu autentiskumu.
+
 ## Licence
 
 Dokumentācija un novērtējuma dati: **CC BY 4.0**. Kods un automatizācija: **MIT**.
