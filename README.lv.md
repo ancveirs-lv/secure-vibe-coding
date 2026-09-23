@@ -78,6 +78,10 @@ Avota atsauce nozīmē pamatojumu/saskaņojumu, nevis kopētu oficiālo formulē
 
 [PILOT-001 reproducējamais izmēģinājums](pilots/PILOT-001/README.lv.md) pārbauda trīs **sintētiskus** `BLOCKED`, `CONDITIONAL` un `READY` scenārijus abās valodās, kļūdainas ievades noraidīšanu un CI atgriešanās kodus. Scenārija `READY` rezultāts pierāda rīka formālo lēmuma loģiku, **nevis** reāla produkta drošību vai pierādījumu autentiskumu.
 
+## EVIDENCE-001 — Pierādījumu piesaiste
+
+[EVIDENCE-001 izstrādes pamats](pilots/EVIDENCE-001/README.lv.md) ļauj piesaistīt deklarētos pierādījumu artefaktus konkrēta lokāla Git commit parastiem blob objektiem un pārbaudīt to SHA-256. EN/LV strukturālie rezultāti tiek uzrādīti atsevišķi. Pareizs hash **nepierāda** apgalvojumu patiesumu, attālā repozitorija izcelsmi, neatkarīgu apstiprinājumu vai produkta drošību. Esošais vērtēšanas rīks netiek mainīts līdz atsevišķajam `INPUT-001` posmam.
+
 ## Licence
 
 Dokumentācija un novērtējuma dati: **CC BY 4.0**. Kods un automatizācija: **MIT**.

@@ -1,0 +1,25 @@
+{
+  "baseline_version": "0.1.1",
+  "bound_controls_in_positive_case": 32,
+  "checks": [
+    "32 synthetic artifacts bound to exact local commit with EN/LV structural parity; no release or authenticity claim",
+    "fail-closed: tampered_sha",
+    "fail-closed: wrong_commit",
+    "fail-closed: missing_binding",
+    "fail-closed: duplicate_binding",
+    "fail-closed: path_traversal",
+    "fail-closed: symlink",
+    "fail-closed: answers_sha",
+    "fail-closed: unknown_control",
+    "fail-closed: unsupported_field",
+    "fail-closed: unsupported_kind",
+    "fail-closed: path_reuse",
+    "fail-closed: duplicate_manifest_key",
+    "fail-closed: duplicate_pinned_answer_key",
+    "pinned historical commit unaffected by dirty working tree; both warnings present"
+  ],
+  "negative_cases_rejected": 13,
+  "protocol": "EVIDENCE-001",
+  "result": "PASS",
+  "scope": "local Git commit/blob hash binding only; all artifacts are synthetic; no authenticity, identity, security or release claims"
+}

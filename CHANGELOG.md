@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — EVIDENCE-001 offline Git binding foundation
+
+- added an optional local Git blob SHA-256 verifier and strict manifest/pinned-answer parser;
+- bound all declared IMPLEMENTED/VERIFIED controls to committed artifacts without upgrading self-reported security claims;
+- added synthetic Git-commit tampering, path-hardening, EN/LV parity, and known-limitations regression tests;
+- preserved the published `v0.1.1` baseline and PILOT-001 results without rewriting them.
+
 ## Unreleased — PILOT-001 structural validation
 
 - introduced deterministic synthetic `BLOCKED`, `CONDITIONAL` and `READY` scenarios with EN/LV parity checks;
