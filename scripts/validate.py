@@ -31,6 +31,8 @@ def validate():
         e.append("state contract failed")
     if len(se["indicators"])!=m["expected_slop_indicator_count"] or len(sl["indicators"])!=m["expected_slop_indicator_count"]:
         e.append("slop indicator count failed")
+    if se.get("version") != m["version"] or sl.get("version") != m["version"]:
+        e.append("slop indicator version parity failed")
     if [x["id"] for x in se["indicators"]] != [x["id"] for x in sl["indicators"]]:
         e.append("slop indicator parity failed")
 

@@ -1,6 +1,6 @@
 {
   "assessment_id": "SVC",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "answers": {
     "O01": {
       "state": "IMPLEMENTED"

@@ -22,6 +22,8 @@ Iespējamie gate rezultāti:
 - `CONDITIONAL` — bloķējošās kontroles ir izpildītas, bet palikušas nebloķējošas nepilnības;
 - `READY` — visas attiecināmās kontroles sasniedz prasīto pierādījumu stāvokli.
 
+Rīks pārbauda pierādījuma piezīmes esamību, bet **neapstiprina pašu pierādījumu**; to pārbauda izlaiduma atbildīgais. Ievadē obligāti jānorāda atbilstošs `assessment_id` un `version`; nepazīstami kontroļu ID tiek noraidīti. Izmanto `--fail-on-blocked`, lai `BLOCKED` izraisītu CI kļūdu, vai `--require-ready`, ja jebkurai nepilnībai jāaptur CI.
+
 `VERIFIED` prasa pierādījuma piezīmi. `NOT_APPLICABLE` atļauts tikai kontrolēm, kur tas skaidri paredzēts, un prasa pamatojumu.
 
 ## Jomas
@@ -66,7 +68,7 @@ Avota atsauce nozīmē pamatojumu/saskaņojumu, nevis kopētu oficiālo formulē
 
 ## Audita statuss
 
-`v0.1.0` ir **auditēta pilota bāzes versija**. Pirms publicēšanas kandidāts tika pārbaudīts piecos virzienos: metodoloģija, avotu atbilstība, pārklājums/dublēšanās, EN/LV lokalizācija un release-gate/pierādījumu semantika. Secinājumi un iestrādātie labojumi ir fiksēti `audits/2026-09-23-skeptical-audit.md`.
+`v0.1.1` ir **auditēta pilota bāzes versija**. Pirms publicēšanas kandidāts tika pārbaudīts piecos virzienos: metodoloģija, avotu atbilstība, pārklājums/dublēšanās, EN/LV lokalizācija un release-gate/pierādījumu semantika. Secinājumi un iestrādātie labojumi ir fiksēti `audits/2026-09-23-skeptical-audit.md`.
 
 ## Autors
 

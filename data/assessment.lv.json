@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "assessment_id": "SVC",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "language": "lv",
   "canonical_language": "en",
   "audience": "izstrādātāji, dibinātāji un komandas, kas izlaiž ar MI palīdzību veidotu programmatūru",
