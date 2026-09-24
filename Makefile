@@ -16,3 +16,6 @@ assess:
 
 pilot:
 	$(PYTHON) pilots/PILOT-001/run_pilot.py --check
+
+evidence:
+	$(PYTHON) pilots/EVIDENCE-001/run_evidence_pilot.py --check

@@ -78,6 +78,10 @@ A source reference indicates rationale/alignment, not copied official wording, c
 
 The [PILOT-001 reproducibility package](pilots/PILOT-001/README.md) exercises three **synthetic** `BLOCKED`, `CONDITIONAL` and `READY` scenarios in EN/LV, invalid-input rejection and CI exit modes. Its `READY` case demonstrates the tool's formal decision contract, **not** real product security or evidence authenticity.
 
+## EVIDENCE-001 — Offline artifact binding
+
+[EVIDENCE-001 foundation](pilots/EVIDENCE-001/README.md) optionally binds declared control evidence to regular Git blobs at an exact local product commit and verifies SHA-256. Its output reports separate EN/LV **structural** gates. A valid artifact hash is not evidence of the claim's truth, remote repository identity, reviewer approval or a secure product. The existing release evaluator remains unchanged pending the separately scoped `INPUT-001` work.
+
 ## Licence
 
 Documentation and assessment data: **CC BY 4.0**. Code and automation: **MIT**.
