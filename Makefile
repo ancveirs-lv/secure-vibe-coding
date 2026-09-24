@@ -19,3 +19,6 @@ pilot:
 
 evidence:
 	$(PYTHON) pilots/EVIDENCE-001/run_evidence_pilot.py --check
+
+input:
+	$(PYTHON) pilots/INPUT-001/run_input_pilot.py --check

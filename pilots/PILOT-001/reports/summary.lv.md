@@ -10,7 +10,7 @@ Pamats: `v0.1.1` commit `94f4a47ad8c6400d9b6fd15b9d7d6f904f0cc519`; 32 kontroles
 | `conditional` | `CONDITIONAL` | `CONDITIONAL` | `CONDITIONAL` | 0 | 3 |
 | `ready` | `READY` | `READY` | `READY` | 0 | 0 |
 
-Noraidīti **13** kļūdainas ievades vektori abās valodās.
+Noraidīti **14** kļūdainas ievades vektori abās valodās.
 Pārbaudītas **12** CI atgriešanās kodu kombinācijas.
 Nepilnīgas atbildes bloķē izlaišanu (`BLOCKED`).
 
@@ -18,7 +18,7 @@ Nepilnīgas atbildes bloķē izlaišanu (`BLOCKED`).
 
 - **LIM-EVIDENCE-001:** izdomātas, netukšas pierādījumu virknes var radīt `READY`. Rīks pārbauda **esamību, nevis patiesumu**.
 - **LIM-APPLICABILITY-002:** tur, kur atļauts N/A, netukšs pamatojums tiek pieņemts bez faktu pārbaudes.
-- **LIM-DUPLICATE-003:** atkārtotas JSON atbilžu atslēgas parsētājs apstrādā, saglabājot pēdējo vērtību; agrākas atbildes var palikt nemanītas.
+- **LIM-DUPLICATE-003 — REMEDIATED ar INPUT-001:** sākotnējais last-wins atradums paliek vēsturiskajā ierakstā; pašreizējais evaluators noraida atkārtotas JSON atslēgas.
 - **LIM-SYNTHETIC-004:** scenāriji nepierāda neviena reāla produkta drošību.
 
 **Interpretācija:** `READY` šajā izmēģinājumā pierāda formālu novērtēšanas loģiku, nevis atļauju izvietot programmatūru.

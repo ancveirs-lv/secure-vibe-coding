@@ -1,0 +1,18 @@
+{
+  "pilot_id": "INPUT-001",
+  "version": "1",
+  "date": "2026-09-24",
+  "base_commit": "c29c53c11c18a3bf3bf5fb3669ceacd0e4ba690b",
+  "scope": "direct assess.py JSON parser and fail-closed input contract",
+  "max_input_bytes": 1048576,
+  "remediates": [
+    "LIM-DUPLICATE-003"
+  ],
+  "preserves": [
+    "32-control assessment semantics",
+    "EN/LV gate parity",
+    "sparse answers default omitted controls to UNKNOWN",
+    "evidence truth remains unverified",
+    "NOT_APPLICABLE factual truth remains unverified"
+  ]
+}

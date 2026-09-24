@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — INPUT-001 fail-closed input hardening
+
+- rejected duplicate JSON keys recursively in direct assessment input;
+- rejected `NaN`/`Infinity`, invalid UTF-8, inputs above 1 MiB and unknown top-level fields;
+- preserved valid EN/LV gate and CI semantics while retaining sparse-input fail-closed behaviour;
+- marked PILOT-001 `LIM-DUPLICATE-003` as remediated without upgrading evidence-authenticity claims.
+
 ## Unreleased — EVIDENCE-001 offline Git binding foundation
 
 - added an optional local Git blob SHA-256 verifier and strict manifest/pinned-answer parser;

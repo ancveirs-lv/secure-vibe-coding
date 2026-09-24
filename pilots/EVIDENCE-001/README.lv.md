@@ -9,7 +9,7 @@
 - Hash sakritība apliecina konkrētu baitu atrašanos norādītajā **lokālajā Git commit**, nevis repozitorija autora identitāti vai attālā GitHub repozitorija stāvokli.
 - `repository_hint` ir nepārbaudīta aprakstoša etiķete. Git commit SHA nav digitāls paraksts.
 - Izdomātam testa žurnālam var būt derīgs SHA-256. `artifact_binding: PASS` apliecina **baitu piesaisti**, nevis kontroles efektivitāti, pierādījumu patiesumu vai neatkarīgu pārskatīšanu.
-- `NOT_APPLICABLE` pamatojumu patiesums netiek pārbaudīts. Šis izvēles rīks **neizlabo** tiešā `assess.py` JSON parsētāju; tas paredzēts atsevišķam `INPUT-001` posmam.
+- `NOT_APPLICABLE` pamatojumu patiesums netiek pārbaudīts. INPUT-001 nostiprina tiešā `assess.py` JSON robežu, tostarp noraida atkārtotas atslēgas, bet tas nepārbauda N/A pamatojumu faktisko patiesumu.
 - Rīks vienmēr uzrāda `release_authorized: false` un `evidence_claims_independently_verified: false`. `structural_gates` ir tikai esošie pašdeklarētie `v0.1.1` rezultāti.
 - Tiek lasīti tikai konkrētajā commit iekļautie Git blob objekti. Lokālā darba direktorija izmaiņas tos neaizstāj.
 
