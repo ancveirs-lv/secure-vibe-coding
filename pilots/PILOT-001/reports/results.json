@@ -177,7 +177,8 @@
     "unknown_state",
     "unsupported_answer_field",
     "nonstring_evidence",
-    "root_array"
+    "root_array",
+    "duplicate_answer_key"
   ],
   "sparse_input": "BLOCKED in EN/LV; gated exit=2",
   "known_limitations": [
@@ -191,7 +192,8 @@
     },
     {
       "id": "LIM-DUPLICATE-003",
-      "observed": "Duplicate JSON answer keys are silently parsed last-wins; an earlier UNKNOWN can be overwritten by a later VERIFIED. This needs fail-closed parsing."
+      "observed": "Historical PILOT-001 finding: duplicate JSON answer keys were last-wins in the published v0.1.1 evaluator. INPUT-001 now rejects duplicates fail-closed.",
+      "status": "REMEDIATED"
     },
     {
       "id": "LIM-SYNTHETIC-004",

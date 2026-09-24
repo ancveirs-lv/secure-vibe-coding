@@ -80,7 +80,11 @@ The [PILOT-001 reproducibility package](pilots/PILOT-001/README.md) exercises th
 
 ## EVIDENCE-001 — Offline artifact binding
 
-[EVIDENCE-001 foundation](pilots/EVIDENCE-001/README.md) optionally binds declared control evidence to regular Git blobs at an exact local product commit and verifies SHA-256. Its output reports separate EN/LV **structural** gates. A valid artifact hash is not evidence of the claim's truth, remote repository identity, reviewer approval or a secure product. The existing release evaluator remains unchanged pending the separately scoped `INPUT-001` work.
+[EVIDENCE-001 foundation](pilots/EVIDENCE-001/README.md) optionally binds declared control evidence to regular Git blobs at an exact local product commit and verifies SHA-256. Its output reports separate EN/LV **structural** gates. A valid artifact hash is not evidence of the claim's truth, remote repository identity, reviewer approval or a secure product.
+
+## INPUT-001 — Fail-closed assessment input
+
+[INPUT-001 hardening](pilots/INPUT-001/README.md) rejects duplicate JSON keys recursively, non-standard JSON constants, invalid UTF-8, oversized assessment inputs and unknown top-level fields while preserving valid EN/LV gate behaviour. It closes the PILOT-001 `LIM-DUPLICATE-003` parser finding; it does not authenticate evidence or prove product security.
 
 ## Licence
 

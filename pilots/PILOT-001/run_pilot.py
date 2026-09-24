@@ -28,6 +28,15 @@ def invoke(payload:Path,lang='en',flag=None):
     return subprocess.run(cmd,cwd=ROOT,capture_output=True,text=True,timeout=15)
 
 
+def invoke_fixture(payload:Path,lang='en',flag=None):
+    data=load(payload)
+    assessment_input={key:data[key] for key in ('assessment_id','version','answers')}
+    with tempfile.TemporaryDirectory(prefix='svc-pilot001-fixture-') as tmp:
+        clean=Path(tmp)/'assessment.json'
+        clean.write_text(json.dumps(assessment_input,ensure_ascii=False),encoding='utf8')
+        return invoke(clean,lang,flag)
+
+
 def insist(condition,message):
     if not condition:
         raise AssertionError(message)
@@ -74,7 +83,7 @@ def checks():
                 insist(x['evidence'].startswith('SYNTHETIC TEST TOKEN'),f'{name}: misleading demonstration evidence label')
         lang_outputs={}
         for lang in LANGS:
-            proc=invoke(fp,lang)
+            proc=invoke_fixture(fp,lang)
             insist(proc.returncode==0,f'{name} {lang} CLI error: {proc.stderr or proc.stdout}')
             out=json.loads(proc.stdout)
             insist(out['gate']==want,f'{name} {lang} gate {out["gate"]} != {want}')
@@ -87,7 +96,7 @@ def checks():
                 ('--fail-on-blocked',2 if want=='BLOCKED' else 0),
                 ('--require-ready',0 if want=='READY' else 2),
             ):
-                gated=invoke(fp,lang,flag)
+                gated=invoke_fixture(fp,lang,flag)
                 insist(gated.returncode==expect_status,f'{name} {lang} {flag} exit={gated.returncode} expected={expect_status}: {gated.stderr}')
                 insist(json.loads(gated.stdout)['gate']==want,f'{name} {flag} altered gate')
                 exit_cases.append({'scenario':name,'language':lang,'mode':flag,'expected_exit':expect_status,'observed_exit':gated.returncode})
@@ -113,6 +122,7 @@ def checks():
         })
 
     payload=load(PILOT/'fixtures'/'ready.json')
+    assessment_payload={key:payload[key] for key in ('assessment_id','version','answers')}
     negative=[
         ('wrong_identity',{'assessment_id':'OTHER'},'assessment_id mismatch'),
         ('missing_identity',{'assessment_id':None},'assessment_id mismatch'),
@@ -130,7 +140,7 @@ def checks():
     rejected=[]
     with tempfile.TemporaryDirectory(prefix='svc-pilot001-') as tmp:
         for name,change,phrase in negative:
-            data={**payload,**change}
+            data={**assessment_payload,**change}
             fp=Path(tmp)/f'{name}.json'
             fp.write_text(json.dumps(data,ensure_ascii=False),encoding='utf8')
             for lang in LANGS:
@@ -153,7 +163,7 @@ def checks():
             insist(r2.returncode==2,f'{lang}: sparse input escaped CI')
 
         unsupported_truth=Path(tmp)/'fabricated_notes.json'
-        unsupported_truth.write_text(json.dumps(payload,ensure_ascii=False),encoding='utf8')
+        unsupported_truth.write_text(json.dumps(assessment_payload,ensure_ascii=False),encoding='utf8')
         a=invoke(unsupported_truth,'en','--require-ready')
         insist(a.returncode==0 and json.loads(a.stdout)['gate']=='READY','evidence authenticity limitation behaviour changed; update pilot')
         fake_na=json.loads(unsupported_truth.read_text(encoding='utf8'))
@@ -169,7 +179,8 @@ def checks():
         duplicate.write_text(original.replace(marker,'    "O01": "UNKNOWN",\n'+marker,1),encoding='utf8')
         for lang in LANGS:
             d=invoke(duplicate,lang,'--require-ready')
-            insist(d.returncode==0 and json.loads(d.stdout)['gate']=='READY','duplicate-key parser behaviour changed; re-evaluate risk')
+            insist(d.returncode!=0 and 'duplicate JSON key rejected: O01' in (d.stderr+d.stdout),'duplicate-key remediation missing')
+        rejected.append('duplicate_answer_key')
     result={
         'pilot_id':'PILOT-001','result':'PASS','baseline_version':meta['version'],
         'baseline_release':PROTOCOL['baseline_release'],'baseline_commit':BASELINE_SHA,
@@ -182,7 +193,7 @@ def checks():
         'known_limitations':[
             {'id':'LIM-EVIDENCE-001','observed':'Fabricated nonempty evidence strings are accepted and can yield READY. Evidence authenticity is not established.'},
             {'id':'LIM-APPLICABILITY-002','observed':'A nonempty NOT_APPLICABLE reason is accepted where N/A is allowed; semantic truth is not verified.'},
-            {'id':'LIM-DUPLICATE-003','observed':'Duplicate JSON answer keys are silently parsed last-wins; an earlier UNKNOWN can be overwritten by a later VERIFIED. This needs fail-closed parsing.'},
+            {'id':'LIM-DUPLICATE-003','observed':'Historical PILOT-001 finding: duplicate JSON answer keys were last-wins in the published v0.1.1 evaluator. INPUT-001 now rejects duplicates fail-closed.','status':'REMEDIATED'},
             {'id':'LIM-SYNTHETIC-004','observed':'No real product, security tooling output or independently authenticated evidence was assessed.'},
         ],
         'release_claim':'Structural decision-contract validation only; no production safety or compliance conclusion.',
@@ -204,7 +215,7 @@ def markdown(data,lang):
             '## Deliberately exposed limitations','',
             '- **LIM-EVIDENCE-001:** fabricated nonempty evidence strings can produce `READY`. The tool checks presence, **not evidence authenticity**.',
             '- **LIM-APPLICABILITY-002:** when N/A is allowed, a nonempty reason is accepted without verifying its factual basis.',
-            '- **LIM-DUPLICATE-003:** duplicate JSON answer keys are silently resolved by the parser; earlier values can be hidden.',
+            '- **LIM-DUPLICATE-003 — REMEDIATED by INPUT-001:** the original last-wins finding remains historical; the current evaluator rejects duplicate JSON keys.',
             '- **LIM-SYNTHETIC-004:** fixture scenarios do not test or establish the security of any real product.','',
             '**Interpretation:** `READY` here demonstrates the evaluator’s formal decision contract, not permission to deploy software.',''])
     else:
@@ -220,7 +231,7 @@ def markdown(data,lang):
             '## Apzināti fiksētie ierobežojumi','',
             '- **LIM-EVIDENCE-001:** izdomātas, netukšas pierādījumu virknes var radīt `READY`. Rīks pārbauda **esamību, nevis patiesumu**.',
             '- **LIM-APPLICABILITY-002:** tur, kur atļauts N/A, netukšs pamatojums tiek pieņemts bez faktu pārbaudes.',
-            '- **LIM-DUPLICATE-003:** atkārtotas JSON atbilžu atslēgas parsētājs apstrādā, saglabājot pēdējo vērtību; agrākas atbildes var palikt nemanītas.',
+            '- **LIM-DUPLICATE-003 — REMEDIATED ar INPUT-001:** sākotnējais last-wins atradums paliek vēsturiskajā ierakstā; pašreizējais evaluators noraida atkārtotas JSON atslēgas.',
             '- **LIM-SYNTHETIC-004:** scenāriji nepierāda neviena reāla produkta drošību.','',
             '**Interpretācija:** `READY` šajā izmēģinājumā pierāda formālu novērtēšanas loģiku, nevis atļauju izvietot programmatūru.',''])
     return '\n'.join(lines)
@@ -248,7 +259,7 @@ def main():
     except (AssertionError,ValueError,KeyError,subprocess.TimeoutExpired) as e:
         print('PILOT-001 FAIL: '+str(e),file=sys.stderr)
         return 1
-    print('PILOT-001 PASS: 3 scenarios × EN/LV; 12 CI exit checks; 13 invalid inputs × EN/LV; 3 explicitly confirmed input/evidence limitations.')
+    print('PILOT-001 PASS: 3 scenarios × EN/LV; 12 CI exit checks; 14 invalid inputs × EN/LV; duplicate-key finding remediated; evidence/N/A limitations remain.')
     return 0
 
 if __name__=='__main__':

@@ -11,3 +11,7 @@
 | Evidence integrity | Can `READY` be reached with fabricated evidence labels or unverified N/A reasons? | Yes; test intentionally records the behaviour as `LIM-EVIDENCE-001` and `LIM-APPLICABILITY-002` and duplicate-key issue `LIM-DUPLICATE-003`. | Requires new evidence provenance and human or automated independent verification design in `v0.2.0`. |
 
 **Conclusion:** pass for *offline structural behaviour* only when reproducible runner returns PASS. No real-world security, compliance or product-release conclusion may be drawn.
+
+## INPUT-001 status update
+
+`LIM-DUPLICATE-003` is retained as the original PILOT-001 finding and is **remediated on current main by INPUT-001**, which rejects duplicate JSON keys recursively.

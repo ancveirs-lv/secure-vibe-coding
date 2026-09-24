@@ -1,0 +1,51 @@
+{
+  "pilot_id": "INPUT-001",
+  "result": "PASS",
+  "scope": "assessment JSON parser and fail-closed input contract",
+  "languages": [
+    "en",
+    "lv"
+  ],
+  "negative_cases_rejected": [
+    "duplicate_root.json",
+    "duplicate_control.json",
+    "duplicate_nested.json",
+    "nan.json",
+    "infinity.json",
+    "extra_root.json",
+    "scenario_metadata.json",
+    "root_array.json",
+    "bad_utf8.json",
+    "too_large.json"
+  ],
+  "negative_case_count": 10,
+  "valid_ready_gates": {
+    "en": "READY",
+    "lv": "READY"
+  },
+  "strict_ready_contracts": [
+    {
+      "language": "en",
+      "gate": "READY",
+      "require_ready_exit": 0
+    },
+    {
+      "language": "lv",
+      "gate": "READY",
+      "require_ready_exit": 0
+    }
+  ],
+  "remediated_findings": [
+    {
+      "id": "LIM-DUPLICATE-003",
+      "status": "REMEDIATED",
+      "evidence": "duplicate keys rejected at root, answers map and nested answer object"
+    }
+  ],
+  "residual_limitations": [
+    "Evidence-note truth is not authenticated by assess.py.",
+    "NOT_APPLICABLE rationale truth is not automatically validated.",
+    "INPUT-001 validates syntax and contract semantics, not product security."
+  ],
+  "release_claim": "Input-contract hardening only; no production security, evidence authenticity or deployment authorization conclusion."
+}

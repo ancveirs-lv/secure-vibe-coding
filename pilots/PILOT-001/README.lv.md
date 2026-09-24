@@ -28,7 +28,7 @@ python3 -m unittest discover -s tests -v
 2. Katrs pamatscenārijs tiek pārbaudīts **EN un LV**; rezultātiem, nepilnību ID un procesa statusiem jāsakrīt.
 3. Visiem trim rezultātiem pārbaudām gan `--fail-on-blocked`, gan `--require-ready` atgriešanās kodus.
 4. Pārbaudām kļūdainas ievades, neatbalstītus laukus un nepamatotu `NOT_APPLICABLE`. Nepilnīgas atbildes nedrīkst dot `READY`.
-5. Apzināti fiksējam **pierādījumu autentiskuma ierobežojumu**: izdomāta, bet netukša pierādījuma virkne var radīt `READY`. Arī `NOT_APPLICABLE` pamatojuma patiesums netiek pārbaudīts; atkārtotas JSON atbilžu atslēgas parsētājs pašlaik apstrādā, saglabājot pēdējo vērtību. Tās ir konstatētas nepilnības nākamajai `v0.2.0` versijai, nevis noklusēti panākumi.
+5. Apzināti fiksējam **pierādījumu autentiskuma ierobežojumu**: izdomāta, bet netukša pierādījuma virkne var radīt `READY`. Arī `NOT_APPLICABLE` pamatojuma patiesums netiek pārbaudīts. Sākotnējais `LIM-DUPLICATE-003` last-wins atradums tiek saglabāts kā vēsturiska atsauce; INPUT-001 to novērš, fail-closed režīmā noraidot atkārtotas JSON atslēgas.
 
 Rezultāti: `reports/results.json`, `reports/summary.en.md`, `reports/summary.lv.md`.
 

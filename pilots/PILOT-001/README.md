@@ -28,7 +28,7 @@ python3 -m unittest discover -s tests -v
 2. Every positive scenario runs in **both EN and LV**. The gate, relevant gap IDs and exit behaviour must match across languages; recommendation text remains localised.
 3. `--fail-on-blocked` and `--require-ready` exit statuses are verified for all three outcomes.
 4. Input contract failures, unsupported fields and attempts to misuse `NOT_APPLICABLE` are exercised. An incomplete answers object must not produce `READY`.
-5. The pilot intentionally confirms an **evidence authenticity limitation**: a fabricated but nonempty evidence string can produce `READY`. Likewise, `NOT_APPLICABLE` rationale semantics are not validated and duplicate JSON answer keys currently use last-wins parsing. These are findings for the proposed `v0.2.0` evidence design, not hidden successes.
+5. The pilot intentionally confirms an **evidence authenticity limitation**: a fabricated but nonempty evidence string can produce `READY`. Likewise, `NOT_APPLICABLE` rationale semantics are not validated. The original `LIM-DUPLICATE-003` last-wins finding is retained as historical context; INPUT-001 remediates it by rejecting duplicate JSON keys fail-closed.
 
 Outputs: `reports/results.json`, `reports/summary.en.md`, `reports/summary.lv.md`.
 

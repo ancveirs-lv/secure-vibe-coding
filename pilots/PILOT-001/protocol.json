@@ -45,8 +45,9 @@
     "LIM-SYNTHETIC-004"
   ],
   "pinned_input_sha256": {
-    "scripts/assess.py": "21454c16cce16da0c2a0862da1b36d4f061f2e994462a57ca678f574820d0534",
     "data/assessment.en.json": "25f6cee95330a81235f6083bbabbbc25b1f49df189ba26a99722873354d5ea6d",
     "data/assessment.lv.json": "40c9ed956809f24c17054ae0d6425c71b4ccb1b62b2f941bb09f8bf4d14917aa"
-  }
+  },
+  "original_evaluator_sha256": "21454c16cce16da0c2a0862da1b36d4f061f2e994462a57ca678f574820d0534",
+  "regression_note": "Scenario semantics are replayed against the current evaluator; original v0.1.1 duplicate-key finding remains historical and INPUT-001 records its remediation."
 }

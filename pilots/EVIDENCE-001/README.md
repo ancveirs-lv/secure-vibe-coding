@@ -9,7 +9,7 @@ This optional verifier binds *declared* `IMPLEMENTED` and `VERIFIED` self-assess
 - Hash match proves that specific bytes are present in the specified **local Git commit**. It does not establish who created the repository or whether a public remote has that commit.
 - The `repository_hint` is an untrusted descriptive label. A Git commit SHA is not a digital signature.
 - A fabricated test log may have a valid hash. `artifact_binding: PASS` means **bytes were bound**, not that the control works, evidence is genuine or an independent reviewer approved it.
-- `NOT_APPLICABLE` rationales remain unverified. The legacy direct `assess.py` parser is **not** fixed by this optional verifier; `INPUT-001` will address it separately.
+- `NOT_APPLICABLE` rationales remain unverified. INPUT-001 hardens the direct `assess.py` JSON boundary, including duplicate-key rejection, but it does not validate the factual truth of N/A rationales.
 - The tool always emits `release_authorized: false` and `evidence_claims_independently_verified: false`. Its `structural_gates` are only the existing self-reported `v0.1.1` gates.
 - Only explicitly committed Git blobs are assessed. Changes in the working tree do not substitute for the pinned commit.
 

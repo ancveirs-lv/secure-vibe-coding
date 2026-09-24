@@ -80,7 +80,11 @@ Avota atsauce nozīmē pamatojumu/saskaņojumu, nevis kopētu oficiālo formulē
 
 ## EVIDENCE-001 — Pierādījumu piesaiste
 
-[EVIDENCE-001 izstrādes pamats](pilots/EVIDENCE-001/README.lv.md) ļauj piesaistīt deklarētos pierādījumu artefaktus konkrēta lokāla Git commit parastiem blob objektiem un pārbaudīt to SHA-256. EN/LV strukturālie rezultāti tiek uzrādīti atsevišķi. Pareizs hash **nepierāda** apgalvojumu patiesumu, attālā repozitorija izcelsmi, neatkarīgu apstiprinājumu vai produkta drošību. Esošais vērtēšanas rīks netiek mainīts līdz atsevišķajam `INPUT-001` posmam.
+[EVIDENCE-001 izstrādes pamats](pilots/EVIDENCE-001/README.lv.md) ļauj piesaistīt deklarētos pierādījumu artefaktus konkrēta lokāla Git commit parastiem blob objektiem un pārbaudīt to SHA-256. EN/LV strukturālie rezultāti tiek uzrādīti atsevišķi. Pareizs hash **nepierāda** apgalvojumu patiesumu, attālā repozitorija izcelsmi, neatkarīgu apstiprinājumu vai produkta drošību.
+
+## INPUT-001 — Fail-closed novērtējuma ievade
+
+[INPUT-001 hardening](pilots/INPUT-001/README.lv.md) rekursīvi noraida atkārtotas JSON atslēgas, nestandarta JSON konstantes, nederīgu UTF-8, pārmērīgi lielu novērtējuma ievadi un nezināmus augšējā līmeņa laukus, saglabājot derīgo EN/LV gate uzvedību. Tas aizver PILOT-001 `LIM-DUPLICATE-003` parsera atradumu, bet neapstiprina pierādījumu patiesumu un nepierāda produkta drošību.
 
 ## Licence
 
