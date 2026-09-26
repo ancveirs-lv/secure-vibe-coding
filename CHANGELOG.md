@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — VERIFICATION-001 signed review provenance
+
+- added strict signed verification records bound to EVIDENCE-001 subject commit and manifest SHA-256;
+- verified detached OpenSSH signatures against an explicit operator-supplied `allowed_signers` trust store;
+- constrained claimed assurance classes and prevented internal reviewers from claiming `INDEPENDENTLY_VERIFIED`;
+- preserved hard boundaries: no automatic real-world identity, independence, evidence-truth, product-security or release-authorization conclusion.
+
 ## Unreleased — INPUT-001 fail-closed input hardening
 
 - rejected duplicate JSON keys recursively in direct assessment input;

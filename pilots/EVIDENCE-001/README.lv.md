@@ -23,4 +23,4 @@ python3 pilots/EVIDENCE-001/run_evidence_pilot.py --check
 python3 -m unittest discover -s tests -v
 ```
 
-**Tvērums:** tikai lokālu Git objektu un SHA-256 pārbaude bez tīkla pieprasījumiem. Netiek pārbaudīti paraksti, pārbaudītāja identitāte, pierādījumu patiesums, produkta drošība vai izvietošanas atļauja. Verifikatoru palaid tikai repozitorijiem, kuriem uzticies.
+**Tvērums:** tikai lokālu Git objektu un SHA-256 pārbaude bez tīkla pieprasījumiem. Netiek pārbaudīta pierādījumu patiesība, produkta drošība vai izvietošanas atļauja. VERIFICATION-001 var šim rezultātam piesaistīt parakstītu pārskata paziņojumu, bet trust-store sasaiste joprojām nepierāda reālās pasaules identitāti vai neatkarību. Verifikatoru palaid tikai repozitorijiem, kuriem uzticies.

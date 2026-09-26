@@ -22,3 +22,6 @@ evidence:
 
 input:
 	$(PYTHON) pilots/INPUT-001/run_input_pilot.py --check
+
+verification:
+	$(PYTHON) pilots/VERIFICATION-001/run_verification_pilot.py --check

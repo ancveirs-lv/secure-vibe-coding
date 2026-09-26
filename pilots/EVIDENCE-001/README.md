@@ -46,4 +46,4 @@ python3 -m unittest discover -s tests -v
 
 The manifest is held **outside the assessed product commit**, avoiding circular self-reference. It may be archived or reviewed independently. Hash the manifest itself (`manifest_sha256` is included in output); retaining and attributing it is a separate assurance task.
 
-**Scope:** offline local Git object and SHA-256 validation only. No network, signatures, reviewer authentication, attestation, penetration testing, vulnerability scanning, or permission to deploy. Run the verifier only on repositories you trust to inspect.
+**Scope:** offline local Git object and SHA-256 validation only. No network, penetration testing, vulnerability scanning, or permission to deploy. VERIFICATION-001 can bind a signed review statement to this output, but its trust-store mapping still does not prove real-world identity or independence. Run the verifier only on repositories you trust to inspect.

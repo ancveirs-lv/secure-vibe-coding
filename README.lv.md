@@ -86,6 +86,10 @@ Avota atsauce nozīmē pamatojumu/saskaņojumu, nevis kopētu oficiālo formulē
 
 [INPUT-001 hardening](pilots/INPUT-001/README.lv.md) rekursīvi noraida atkārtotas JSON atslēgas, nestandarta JSON konstantes, nederīgu UTF-8, pārmērīgi lielu novērtējuma ievadi un nezināmus augšējā līmeņa laukus, saglabājot derīgo EN/LV gate uzvedību. Tas aizver PILOT-001 `LIM-DUPLICATE-003` parsera atradumu, bet neapstiprina pierādījumu patiesumu un nepierāda produkta drošību.
 
+## VERIFICATION-001 — Parakstīta pārskata provenance
+
+[VERIFICATION-001](pilots/VERIFICATION-001/README.lv.md) piesaista detached-SSH-parakstītu verifikācijas ierakstu precīzam EVIDENCE-001 produkta commit un manifesta hash. Tas nošķir parakstītu assurance apgalvojumu no pierādīta fakta: pat `INDEPENDENTLY_VERIFIED` ieraksts pats par sevi nepierāda reālās pasaules identitāti, organizatorisko neatkarību, pierādījumu patiesumu, produkta drošību vai izlaišanas atļauju.
+
 ## Licence
 
 Dokumentācija un novērtējuma dati: **CC BY 4.0**. Kods un automatizācija: **MIT**.

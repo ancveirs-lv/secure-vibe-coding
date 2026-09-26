@@ -23,4 +23,5 @@ jobs:
       - run: python pilots/PILOT-001/run_pilot.py --check
       - run: python pilots/EVIDENCE-001/run_evidence_pilot.py --check
       - run: python pilots/INPUT-001/run_input_pilot.py --check
+      - run: python pilots/VERIFICATION-001/run_verification_pilot.py --check
       - run: git diff --check
