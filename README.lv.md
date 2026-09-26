@@ -90,6 +90,10 @@ Avota atsauce nozīmē pamatojumu/saskaņojumu, nevis kopētu oficiālo formulē
 
 [VERIFICATION-001](pilots/VERIFICATION-001/README.lv.md) piesaista detached-SSH-parakstītu verifikācijas ierakstu precīzam EVIDENCE-001 produkta commit un manifesta hash. Tas nošķir parakstītu assurance apgalvojumu no pierādīta fakta: pat `INDEPENDENTLY_VERIFIED` ieraksts pats par sevi nepierāda reālās pasaules identitāti, organizatorisko neatkarību, pierādījumu patiesumu, produkta drošību vai izlaišanas atļauju.
 
+## PILOT-002 — Assurance ķēdes end-to-end integrācija
+
+[PILOT-002](pilots/PILOT-002/README.lv.md) vienā sintētiskā subject savieno pašreizējo ķēdi: viena un tā pati commit saglabātā novērtējuma ievade sasniedz `READY` EN/LV, EVIDENCE-001 piesaista visas 32 kontroles precīzam Git commit, bet VERIFICATION-001 piesaista detached-SSH-parakstītu pārskata ierakstu tam pašam commit un evidence manifesta hash. Starpposmu aizvietošanas un assurance eskalācijas mēģinājumi tiek noraidīti fail-closed. PASS joprojām ir protokolu integrācijas rezultāts, nevis reālās pasaules identitātes, pierādījumu patiesuma, produkta drošības vai izlaišanas atļaujas pierādījums.
+
 ## Licence
 
 Dokumentācija un novērtējuma dati: **CC BY 4.0**. Kods un automatizācija: **MIT**.

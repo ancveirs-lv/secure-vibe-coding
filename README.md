@@ -90,6 +90,10 @@ The [PILOT-001 reproducibility package](pilots/PILOT-001/README.md) exercises th
 
 [VERIFICATION-001](pilots/VERIFICATION-001/README.md) binds a detached-SSH-signed verification record to the exact EVIDENCE-001 subject commit and manifest hash. It distinguishes signed assurance claims from established facts: even an `INDEPENDENTLY_VERIFIED` record does not by itself prove real-world identity, organizational independence, evidence truth, product security or release authorization.
 
+## PILOT-002 — End-to-end assurance-chain integration
+
+[PILOT-002](pilots/PILOT-002/README.md) composes the current chain in one synthetic subject: the same committed assessment reaches `READY` in EN/LV, EVIDENCE-001 binds all 32 controls to that exact Git commit, and VERIFICATION-001 binds a detached-SSH-signed review record to the same commit and evidence-manifest hash. Cross-stage substitution and escalation attempts fail closed. A PASS remains a protocol-integration result, not proof of real-world identity, evidence truth, product security or permission to release.
+
 ## Licence
 
 Documentation and assessment data: **CC BY 4.0**. Code and automation: **MIT**.
