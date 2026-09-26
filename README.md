@@ -68,13 +68,13 @@ A source reference indicates rationale/alignment, not copied official wording, c
 
 ## Audit status
 
-`v0.1.1` is an **audited pilot baseline**. Before publication, the candidate was reviewed in five directions: methodology, source fidelity, coverage/duplication, EN/LV localisation, and release-gate/evidence semantics. Findings and incorporated changes are recorded in `audits/2026-09-23-skeptical-audit.md`.
+`v0.1.1` was the **audited pilot baseline**. Its five-direction publication audit is recorded in `audits/2026-09-23-skeptical-audit.md`.
 
-The unreleased v0.2.0 candidate has a separate five-direction pre-release audit in `audits/2026-09-26-v0.2.0-pre-release-audit.md`. That audit authorizes only the next release-metadata/version stage after its remediation passes CI; it is not itself a release authorization.
+`v0.2.0` is the current audited repository/toolkit release. Its separate five-direction pre-release audit is recorded in `audits/2026-09-26-v0.2.0-pre-release-audit.md`. The release adds input hardening, evidence binding, signed verification provenance and end-to-end assurance-chain integration without claiming certification, compliance, evidence truth, real-world identity or product security.
 
 ## Version semantics
 
-Git tags and `CITATION.cff` identify the repository/toolkit release. `data/meta.json["version"]` identifies the assessment contract used by answer files, evidence manifests and verification records. The v0.2.0 candidate adds provenance and integration layers without changing the 32-control assessment model or gate semantics, so the assessment contract intentionally remains `0.1.1`.
+Git tags and `CITATION.cff` identify the repository/toolkit release. `data/meta.json["version"]` identifies the assessment contract used by answer files, evidence manifests and verification records. The v0.2.0 toolkit release adds provenance and integration layers without changing the 32-control assessment model or gate semantics, so the assessment contract intentionally remains `0.1.1`.
 
 ## Author
 
