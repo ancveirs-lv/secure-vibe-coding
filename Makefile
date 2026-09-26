@@ -25,3 +25,5 @@ input:
 
 verification:
 	$(PYTHON) pilots/VERIFICATION-001/run_verification_pilot.py --check
+pilot2:
+	$(PYTHON) pilots/PILOT-002/run_pilot.py --check

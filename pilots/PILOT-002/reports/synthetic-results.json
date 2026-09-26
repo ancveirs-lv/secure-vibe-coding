@@ -1,0 +1,57 @@
+{
+  "assurance_boundary": {
+    "evidence_truth_verified_by_tool": false,
+    "organizational_independence_verified_by_tool": false,
+    "product_security_established": false,
+    "real_world_identity_verified_by_tool": false,
+    "release_authorized": false,
+    "synthetic_only": true
+  },
+  "chain": {
+    "answers_sha256": "36b8e643e1f1353725c1ab87b4c00c379a4bea3b1f131649efd8941c25877311",
+    "evidence_manifest_sha256": "57b61e69df71f24affe6dbed4689d2e9fd5d33093edb43c25339ed4fe16838f5",
+    "evidence_report_sha256": "8f1bf73a07039e40fb3f6e786407a2dc511dac8a0edb907857f0bc07b256a5c9",
+    "subject_commit": "468d696009b413b29be0b9d2c670adaf64065087",
+    "verification_record_sha256": "5fa8bd024136c3ca4c7afa0a746da23c0f28f73e32c85aabb696d907df2205a8"
+  },
+  "checks": [
+    "assessment: same committed input is READY in EN and LV",
+    "evidence: all 32 controls bound to exact Git blobs at the same subject commit",
+    "verification: signed record binds the same subject commit and evidence manifest without assurance escalation",
+    "fail-closed: cross-stage substitutions, rebindings, signature tampering and release escalation rejected"
+  ],
+  "negative_cases": [
+    "assessment_not_ready_rejected",
+    "answers_hash_substitution_rejected",
+    "artifact_hash_substitution_rejected",
+    "valid_evidence_report_substitution_rejected",
+    "signed_subject_commit_rebind_rejected",
+    "signed_manifest_rebind_rejected",
+    "post_signature_record_tamper_rejected",
+    "wrong_trust_store_identity_rejected",
+    "release_authorization_escalation_rejected"
+  ],
+  "negative_cases_rejected": 9,
+  "protocol": "PILOT-002",
+  "result": "PASS",
+  "scope": "synthetic end-to-end assurance-chain integration only",
+  "stages": {
+    "assessment": {
+      "control_count": 32,
+      "en_gate": "READY",
+      "lv_gate": "READY"
+    },
+    "evidence": {
+      "artifact_binding": "PASS",
+      "artifact_count": 32,
+      "bound_control_count": 32,
+      "protocol": "EVIDENCE-001"
+    },
+    "verification": {
+      "claimed_assurance_class": "INDEPENDENTLY_VERIFIED",
+      "protocol": "VERIFICATION-001",
+      "record_signature": "PASS",
+      "verified_control_count": 32
+    }
+  }
+}

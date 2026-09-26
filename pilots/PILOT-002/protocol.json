@@ -1,0 +1,27 @@
+{
+  "acceptance": [
+    "all 32 controls traverse the same exact subject commit",
+    "cross-stage commit and manifest substitutions fail closed",
+    "post-signature tampering and wrong trust-store identity fail closed",
+    "release authorization escalation is rejected",
+    "deterministic committed report reproduces in CI"
+  ],
+  "base_commit": "81966f5aefda06696d7971e6c65f668ca754e970",
+  "date": "2026-09-26",
+  "hard_boundaries": [
+    "synthetic evidence only",
+    "real-world identity is not proven",
+    "organizational independence is not proven",
+    "evidence truth is not proven",
+    "product security is not established",
+    "release is never authorized by the pilot"
+  ],
+  "pilot_id": "PILOT-002",
+  "scope": "synthetic end-to-end composition of assessment, EVIDENCE-001 and VERIFICATION-001",
+  "stages": [
+    "assessment READY parity in EN/LV",
+    "EVIDENCE-001 exact Git/SHA-256 binding",
+    "VERIFICATION-001 detached SSH signed provenance"
+  ],
+  "version": "1"
+}

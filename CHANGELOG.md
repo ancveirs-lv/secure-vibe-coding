@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — PILOT-002 end-to-end assurance-chain integration
+
+- composed READY assessment, EVIDENCE-001 and VERIFICATION-001 over one deterministic synthetic subject commit;
+- required all 32 control bindings and preserved exact commit/manifest hashes across stages;
+- rejected valid-but-different evidence-report substitution, signed subject rebinding, post-signature tampering and trust-store identity mismatch;
+- rejected release-authorization escalation while preserving explicit no-security/no-certification boundaries.
+
 ## Unreleased — VERIFICATION-001 signed review provenance
 
 - added strict signed verification records bound to EVIDENCE-001 subject commit and manifest SHA-256;
