@@ -307,7 +307,7 @@ def check():
         checks.append("verification: signed record binds the same subject commit and evidence manifest without assurance escalation")
 
         alternate_manifest = copy.deepcopy(manifest)
-        alternate_manifest["subject"]["repository_hint"] = "synthetic-pilot002-alternate-label"
+        alternate_manifest["bindings"] = list(reversed(alternate_manifest["bindings"]))
         alternate_manifest_path = temp / "alternate-evidence-manifest.json"
         write_json(alternate_manifest_path, alternate_manifest)
         alternate_ev = evidence_run(subject, alternate_manifest_path)
@@ -335,6 +335,14 @@ def check():
         proc = verification_run(record_path, evidence_report_path, signature, allowed)
         insist(proc.returncode != 0 and "evidence manifest SHA-256 mismatch" in proc.stderr, "signed manifest rebind accepted")
         negatives.append("signed_manifest_rebind_rejected")
+
+        wrong_hint = copy.deepcopy(record)
+        wrong_hint["subject"]["repository_hint"] = "different-synthetic-label"
+        write_json(record_path, wrong_hint)
+        signature = sign_record(record_path, key)
+        proc = verification_run(record_path, evidence_report_path, signature, allowed)
+        insist(proc.returncode != 0 and "repository_hint mismatch with evidence report" in proc.stderr, "signed repository_hint drift accepted")
+        negatives.append("signed_repository_hint_drift_rejected")
 
         write_json(record_path, record)
         signature = sign_record(record_path, key)

@@ -9,6 +9,8 @@ import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[1]
+
 MAX_RECORD = 512 * 1024
 MAX_EVIDENCE_REPORT = 2 * 1024 * 1024
 MAX_SIGNATURE = 128 * 1024
@@ -121,14 +123,15 @@ def verify(record_path: Path, evidence_report_path: Path, signature: Path, allow
     record = decode_json(record_bytes, "verification record")
     evidence = decode_json(evidence_bytes, "evidence report")
 
+    meta = decode_json((ROOT / "data/meta.json").read_bytes(), "baseline meta")
     exact_keys(
         record,
         ("schema_version", "assessment_id", "assessment_version", "subject", "verification", "verifier"),
         "verification record",
     )
     must(type(record["schema_version"]) is int and record["schema_version"] == 1, "unsupported verification schema version")
-    must(record["assessment_id"] == "SVC", "verification assessment_id mismatch")
-    must(record["assessment_version"] == "0.1.1", "verification assessment_version mismatch")
+    must(record["assessment_id"] == meta["assessment_id"], "verification assessment_id mismatch")
+    must(record["assessment_version"] == meta["version"], "verification assessment_version mismatch")
 
     subject = record["subject"]
     exact_keys(subject, ("repository_hint", "commit", "evidence_manifest_sha256"), "subject")
@@ -186,6 +189,7 @@ def verify(record_path: Path, evidence_report_path: Path, signature: Path, allow
     must(evidence.get("evidence_claims_independently_verified") is False, "unexpected evidence assurance claim")
     evidence_subject = evidence.get("subject")
     must(isinstance(evidence_subject, dict), "evidence report subject missing")
+    must(evidence_subject.get("repository_hint") == subject["repository_hint"], "repository_hint mismatch with evidence report")
     must(evidence_subject.get("commit") == subject["commit"], "subject commit mismatch with evidence report")
     must(evidence.get("manifest_sha256") == subject["evidence_manifest_sha256"], "evidence manifest SHA-256 mismatch")
     bound = evidence.get("bound_control_ids")

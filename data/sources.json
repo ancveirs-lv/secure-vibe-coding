@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "verified_at": "2026-09-23",
+  "verified_at": "2026-09-26",
   "sources": {
     "nist_ssdf11": {
       "title": "NIST SP 800-218 — Secure Software Development Framework (SSDF) Version 1.1",
       "publisher": "National Institute of Standards and Technology",
       "url": "https://csrc.nist.gov/pubs/sp/800/218/final",
-      "verified_at": "2026-09-23",
+      "verified_at": "2026-09-26",
       "scope": "General secure software development framework; not specific to AI-assisted coding.",
       "use": "Secure development process, review, provenance, release and vulnerability-prevention rationale."
     },
@@ -14,7 +14,7 @@
       "title": "OWASP Secure Coding with AI Cheat Sheet",
       "publisher": "OWASP Cheat Sheet Series",
       "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Coding_with_AI_Cheat_Sheet.html",
-      "verified_at": "2026-09-23",
+      "verified_at": "2026-09-26",
       "scope": "AI-assisted and agentic coding risks; does not replace general secure-coding guidance.",
       "use": "Hallucinated dependencies, indirect prompt injection, MCP/tool safety, context leakage, agent permissions and human accountability."
     },
@@ -22,7 +22,7 @@
       "title": "OWASP Top 10 for Agentic Applications 2026",
       "publisher": "OWASP Gen AI Security Project",
       "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
-      "verified_at": "2026-09-23",
+      "verified_at": "2026-09-26",
       "scope": "Agentic AI systems that plan, act or invoke tools; not universally applicable to non-agentic code completion.",
       "use": "Goal hijacking, tool misuse, identity/privilege abuse, agentic supply chain and runtime containment rationale."
     },
@@ -30,7 +30,7 @@
       "title": "Security-Focused Guide for AI Code Assistant Instructions",
       "publisher": "OpenSSF Best Practices and AI/ML Working Groups",
       "url": "https://best.openssf.org/Security-Focused-Guide-for-AI-Code-Assistant-Instructions",
-      "verified_at": "2026-09-23",
+      "verified_at": "2026-09-26",
       "scope": "Practical guidance for instructions/prompts used with AI code assistants; not a certification standard.",
       "use": "Human responsibility, secure instructions, review, testing, dependency and secret-safety rationale."
     },
@@ -38,7 +38,7 @@
       "title": "OWASP Application Security Verification Standard (ASVS) 5.0.0",
       "publisher": "OWASP Foundation",
       "url": "https://owasp.org/projects/asvs",
-      "verified_at": "2026-09-23",
+      "verified_at": "2026-09-26",
       "scope": "Web application technical security verification standard; not every requirement applies to every software product.",
       "use": "Authentication, authorization, validation, configuration, data protection, logging and application-security verification rationale."
     },
@@ -46,7 +46,7 @@
       "title": "OpenSSF Vulnerability Disclosures WG — AI-Slop impact context",
       "publisher": "OpenSSF",
       "url": "https://openssf.org/newsletter/2026/04/21/openssf-newsletter-april-2026/",
-      "verified_at": "2026-09-23",
+      "verified_at": "2026-09-26",
       "scope": "OpenSSF uses AI-Slop in the narrower context of low-quality AI-generated vulnerability reports.",
       "use": "Terminology context only; this project defines its broader Anti-AI-Slop label independently."
     }

@@ -12,7 +12,7 @@ The pilot creates a temporary synthetic product repository, commits one assessme
 
 - the same committed assessment input produces `READY` in EN and LV;
 - EVIDENCE-001 binds all 32 controls to regular Git blobs at the exact subject commit;
-- the signed VERIFICATION-001 record refers to that same commit and exact evidence-manifest SHA-256;
+- the signed VERIFICATION-001 record carries the same descriptive `repository_hint`, the same commit and the exact evidence-manifest SHA-256;
 - the detached signature verifies only through the explicit `allowed_signers` mapping;
 - valid-but-different evidence reports, changed hashes, changed signed subject bindings, post-signature tampering and a forged `release_authorized=true` report fail closed;
 - the final report keeps real-world identity, organizational independence, evidence truth, product security and release authorization explicitly false.

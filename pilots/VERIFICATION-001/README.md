@@ -2,7 +2,7 @@
 
 **Status: audited development foundation; not a v0.2.0 release claim and not an independent security certification.**
 
-VERIFICATION-001 adds a signed verification record on top of EVIDENCE-001. The exact JSON record is detached-SSH-signed and checked against an operator-supplied OpenSSH `allowed_signers` trust store. The record is also bound to the exact subject commit and EVIDENCE-001 manifest SHA-256.
+VERIFICATION-001 adds a signed verification record on top of EVIDENCE-001. The exact JSON record is detached-SSH-signed and checked against an operator-supplied OpenSSH `allowed_signers` trust store. The record is also bound to the same descriptive `repository_hint`, exact subject commit and EVIDENCE-001 manifest SHA-256. The hint remains an untrusted label; equality prevents cross-stage label drift but does not authenticate a repository owner.
 
 ## Claimed assurance classes
 

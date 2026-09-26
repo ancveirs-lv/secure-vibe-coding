@@ -70,6 +70,12 @@ Avota atsauce nozīmē pamatojumu/saskaņojumu, nevis kopētu oficiālo formulē
 
 `v0.1.1` ir **auditēta pilota bāzes versija**. Pirms publicēšanas kandidāts tika pārbaudīts piecos virzienos: metodoloģija, avotu atbilstība, pārklājums/dublēšanās, EN/LV lokalizācija un release-gate/pierādījumu semantika. Secinājumi un iestrādātie labojumi ir fiksēti `audits/2026-09-23-skeptical-audit.md`.
 
+Nepublicētajam v0.2.0 kandidātam ir atsevišķs piecu virzienu pre-release audits `audits/2026-09-26-v0.2.0-pre-release-audit.md`. Šis audits pēc remediation un zaļa CI atļauj tikai nākamo release metadatu/versijas posmu; tas pats par sevi nav izlaišanas atļauja.
+
+## Versiju semantika
+
+Git tagi un `CITATION.cff` identificē repozitorija/toolkit izlaidumu. `data/meta.json["version"]` identificē assessment contract, kuru izmanto atbilžu faili, evidence manifesti un verifikācijas ieraksti. v0.2.0 kandidāts pievieno provenance un integrācijas slāņus, nemainot 32 kontroļu assessment modeli vai gate semantiku, tāpēc assessment contract apzināti paliek `0.1.1`.
+
 ## Autors
 
 **Zigmārs Ancveirs** — tehnoloģiju vadītājs, programmatūras inženieris un neatkarīgs kiberdrošības pētnieks.
