@@ -12,7 +12,7 @@ Pilots izveido pagaidu sintētisku produkta repozitoriju, vienā commit saglabā
 
 - viena un tā pati commit saglabātā novērtējuma ievade dod `READY` EN un LV;
 - EVIDENCE-001 piesaista visas 32 kontroles regulāriem Git blobiem pie precīza subject commit;
-- parakstītais VERIFICATION-001 ieraksts atsaucas uz to pašu commit un precīzu evidence manifesta SHA-256;
+- parakstītais VERIFICATION-001 ieraksts nes to pašu aprakstošo `repository_hint`, atsaucas uz to pašu commit un precīzu evidence manifesta SHA-256;
 - detached paraksts verificējas tikai caur skaidri norādītu `allowed_signers` sasaisti;
 - derīgs, bet cits evidence reports, mainīti hash, mainītas parakstītās subject piesaistes, izmaiņas pēc parakstīšanas un viltots `release_authorized=true` reports tiek noraidīti fail-closed;
 - gala reports saglabā `false` reālās pasaules identitātei, organizatoriskajai neatkarībai, pierādījumu patiesumam, produkta drošībai un izlaišanas atļaujai.

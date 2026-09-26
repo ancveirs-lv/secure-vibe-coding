@@ -70,6 +70,12 @@ A source reference indicates rationale/alignment, not copied official wording, c
 
 `v0.1.1` is an **audited pilot baseline**. Before publication, the candidate was reviewed in five directions: methodology, source fidelity, coverage/duplication, EN/LV localisation, and release-gate/evidence semantics. Findings and incorporated changes are recorded in `audits/2026-09-23-skeptical-audit.md`.
 
+The unreleased v0.2.0 candidate has a separate five-direction pre-release audit in `audits/2026-09-26-v0.2.0-pre-release-audit.md`. That audit authorizes only the next release-metadata/version stage after its remediation passes CI; it is not itself a release authorization.
+
+## Version semantics
+
+Git tags and `CITATION.cff` identify the repository/toolkit release. `data/meta.json["version"]` identifies the assessment contract used by answer files, evidence manifests and verification records. The v0.2.0 candidate adds provenance and integration layers without changing the 32-control assessment model or gate semantics, so the assessment contract intentionally remains `0.1.1`.
+
 ## Author
 
 **Zigmārs Ancveirs** — technology leader, software engineer and independent cybersecurity researcher.

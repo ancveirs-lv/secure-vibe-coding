@@ -15,6 +15,8 @@ def validate():
     se=load("data/slop-indicators.en.json")
     sl=load("data/slop-indicators.lv.json")
 
+    if m.get("version_scope")!="assessment-contract":
+        e.append("meta version_scope must be assessment-contract")
     if en.get("canonical_language")!="en" or lv.get("canonical_language")!="en":
         e.append("canonical language contract failed")
     if en.get("version")!=m["version"] or lv.get("version")!=m["version"]:

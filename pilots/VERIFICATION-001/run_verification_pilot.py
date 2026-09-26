@@ -181,6 +181,7 @@ def check():
             checks.append("fail-closed: " + name)
 
         semantic_negative("wrong_manifest_hash", lambda r: r["subject"].update(evidence_manifest_sha256="0" * 64), "evidence manifest SHA-256 mismatch")
+        semantic_negative("repository_hint_mismatch", lambda r: r["subject"].update(repository_hint="different-synthetic-label"), "repository_hint mismatch with evidence report")
         semantic_negative("wrong_commit", lambda r: r["subject"].update(commit="a" * 40), "subject commit mismatch")
         semantic_negative("internal_independent_claim", lambda r: r["verifier"].update(relationship="INTERNAL"), "INDEPENDENTLY_VERIFIED requires EXTERNAL")
         semantic_negative("duplicate_control", lambda r: r["verification"]["control_ids"].__setitem__(-1, r["verification"]["control_ids"][0]), "duplicate control ID")

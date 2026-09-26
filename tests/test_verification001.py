@@ -29,6 +29,13 @@ class Verification001Tests(unittest.TestCase):
         self.assertIn('"product_security_established": False', text)
         self.assertIn('"release_authorized": False', text)
 
+    def test_verifier_binds_current_assessment_contract_and_subject_label(self):
+        text = (ROOT / "scripts/verify_verification.py").read_text(encoding="utf-8")
+        self.assertIn('meta["assessment_id"]', text)
+        self.assertIn('meta["version"]', text)
+        self.assertNotIn('record["assessment_version"] == "0.1.1"', text)
+        self.assertIn('evidence_subject.get("repository_hint") == subject["repository_hint"]', text)
+
 
 if __name__ == "__main__":
     unittest.main()

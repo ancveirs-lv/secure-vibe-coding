@@ -11,6 +11,7 @@
     "signed external review claim bound to exact EVIDENCE-001 commit/manifest; no real-world independence or security escalation",
     "fail-closed: tampered_signed_record",
     "fail-closed: wrong_manifest_hash",
+    "fail-closed: repository_hint_mismatch",
     "fail-closed: wrong_commit",
     "fail-closed: internal_independent_claim",
     "fail-closed: duplicate_control",
@@ -21,7 +22,7 @@
     "fail-closed: wrong_allowed_signer_identity",
     "fail-closed: duplicate_record_key"
   ],
-  "negative_cases_rejected": 11,
+  "negative_cases_rejected": 12,
   "positive_case": "signed external INDEPENDENTLY_VERIFIED claim is cryptographically attributed to operator trust-store identity without claiming real-world independence",
   "protocol": "VERIFICATION-001",
   "result": "PASS",

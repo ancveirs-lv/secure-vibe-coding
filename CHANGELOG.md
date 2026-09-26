@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — v0.2.0 pre-release audit hardening
+
+- refreshed official source-verification dates after the 2026-09-26 source-fidelity review;
+- made assessment-contract version scope explicit instead of conflating it with the repository release tag;
+- removed the hard-coded VERIFICATION-001 assessment version in favor of `data/meta.json`;
+- required signed verification records and EVIDENCE-001 reports to use the same descriptive `repository_hint`, while preserving the explicit non-authentication boundary.
+
 ## Unreleased — PILOT-002 end-to-end assurance-chain integration
 
 - composed READY assessment, EVIDENCE-001 and VERIFICATION-001 over one deterministic synthetic subject commit;

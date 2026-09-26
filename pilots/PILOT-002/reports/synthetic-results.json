@@ -27,11 +27,12 @@
     "valid_evidence_report_substitution_rejected",
     "signed_subject_commit_rebind_rejected",
     "signed_manifest_rebind_rejected",
+    "signed_repository_hint_drift_rejected",
     "post_signature_record_tamper_rejected",
     "wrong_trust_store_identity_rejected",
     "release_authorization_escalation_rejected"
   ],
-  "negative_cases_rejected": 9,
+  "negative_cases_rejected": 10,
   "protocol": "PILOT-002",
   "result": "PASS",
   "scope": "synthetic end-to-end assurance-chain integration only",

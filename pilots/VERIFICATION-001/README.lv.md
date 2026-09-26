@@ -2,7 +2,7 @@
 
 **Statuss: auditēts izstrādes pamats; tas nav v0.2.0 izlaiduma apgalvojums un nav neatkarīga drošības sertifikācija.**
 
-VERIFICATION-001 virs EVIDENCE-001 pievieno parakstītu verifikācijas ierakstu. Precīzs JSON ieraksts tiek pārbaudīts ar detached SSH parakstu pret operatora norādītu OpenSSH `allowed_signers` trust-store. Ieraksts tiek piesaistīts arī precīzam produkta commit un EVIDENCE-001 manifesta SHA-256.
+VERIFICATION-001 virs EVIDENCE-001 pievieno parakstītu verifikācijas ierakstu. Precīzs JSON ieraksts tiek pārbaudīts ar detached SSH parakstu pret operatora norādītu OpenSSH `allowed_signers` trust-store. Ieraksts tiek piesaistīts arī tam pašam aprakstošajam `repository_hint`, precīzam produkta commit un EVIDENCE-001 manifesta SHA-256. Šis hint joprojām ir neuzticams apzīmējums; vienādības pārbaude novērš label drift starp posmiem, bet neautentificē repozitorija īpašnieku.
 
 ## Deklarētās assurance klases
 
