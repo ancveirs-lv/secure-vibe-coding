@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Anti-AI-Slop VERIFICATION-001 signed verification record",
+  "$comment": "Documentary schema. Runtime additionally verifies detached SSH signature, trust-store identity, EVIDENCE-001 binding and assurance-class constraints.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "assessment_id",
+    "assessment_version",
+    "subject",
+    "verification",
+    "verifier"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "assessment_id": {
+      "const": "SVC"
+    },
+    "assessment_version": {
+      "const": "0.1.1"
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_hint",
+        "commit",
+        "evidence_manifest_sha256"
+      ],
+      "properties": {
+        "repository_hint": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        "evidence_manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claimed_assurance_class",
+        "performed_at",
+        "method",
+        "result",
+        "control_ids",
+        "statement"
+      ],
+      "properties": {
+        "claimed_assurance_class": {
+          "enum": [
+            "SELF_REPORTED",
+            "TOOL_VERIFIED",
+            "HUMAN_REVIEWED",
+            "INDEPENDENTLY_VERIFIED"
+          ]
+        },
+        "performed_at": {
+          "type": "string"
+        },
+        "method": {
+          "enum": [
+            "MANUAL_REVIEW",
+            "AUTOMATED_TOOL",
+            "HYBRID_REVIEW"
+          ]
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "INCONCLUSIVE"
+          ]
+        },
+        "control_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][0-9]{2}$"
+          }
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    },
+    "verifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identity",
+        "display_name",
+        "role",
+        "organization",
+        "relationship"
+      ],
+      "properties": {
+        "identity": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._@:+-]{1,128}$"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "organization": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "relationship": {
+          "enum": [
+            "SUBJECT",
+            "INTERNAL",
+            "EXTERNAL",
+            "TOOL"
+          ]
+        }
+      }
+    }
+  }
+}

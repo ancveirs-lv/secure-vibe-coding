@@ -86,6 +86,10 @@ The [PILOT-001 reproducibility package](pilots/PILOT-001/README.md) exercises th
 
 [INPUT-001 hardening](pilots/INPUT-001/README.md) rejects duplicate JSON keys recursively, non-standard JSON constants, invalid UTF-8, oversized assessment inputs and unknown top-level fields while preserving valid EN/LV gate behaviour. It closes the PILOT-001 `LIM-DUPLICATE-003` parser finding; it does not authenticate evidence or prove product security.
 
+## VERIFICATION-001 — Signed review provenance
+
+[VERIFICATION-001](pilots/VERIFICATION-001/README.md) binds a detached-SSH-signed verification record to the exact EVIDENCE-001 subject commit and manifest hash. It distinguishes signed assurance claims from established facts: even an `INDEPENDENTLY_VERIFIED` record does not by itself prove real-world identity, organizational independence, evidence truth, product security or release authorization.
+
 ## Licence
 
 Documentation and assessment data: **CC BY 4.0**. Code and automation: **MIT**.

@@ -1,0 +1,22 @@
+{
+  "pilot_id": "VERIFICATION-001",
+  "version": "1",
+  "date": "2026-09-24",
+  "base_commit": "f692e76883c5f63ac0bef772646d4c78013168d2",
+  "namespace": "secure-vibe-coding-verification-v1",
+  "scope": "detached SSH-signed verification record bound to EVIDENCE-001 output",
+  "claimed_assurance_classes": [
+    "SELF_REPORTED",
+    "TOOL_VERIFIED",
+    "HUMAN_REVIEWED",
+    "INDEPENDENTLY_VERIFIED"
+  ],
+  "hard_boundaries": [
+    "operator-supplied allowed_signers trust store is required",
+    "real-world identity is not proven by the tool",
+    "organizational independence is not proven by the tool",
+    "evidence truth is not proven by the tool",
+    "product security is not established",
+    "release is never authorized"
+  ]
+}

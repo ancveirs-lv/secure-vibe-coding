@@ -1,0 +1,29 @@
+{
+  "assurance_boundary": {
+    "evidence_truth_verified_by_tool": false,
+    "identity_bound_to_allowed_signers": true,
+    "organizational_independence_verified_by_tool": false,
+    "product_security_established": false,
+    "real_world_identity_verified_by_tool": false,
+    "release_authorized": false
+  },
+  "checks": [
+    "signed external review claim bound to exact EVIDENCE-001 commit/manifest; no real-world independence or security escalation",
+    "fail-closed: tampered_signed_record",
+    "fail-closed: wrong_manifest_hash",
+    "fail-closed: wrong_commit",
+    "fail-closed: internal_independent_claim",
+    "fail-closed: duplicate_control",
+    "fail-closed: unknown_control",
+    "fail-closed: future_timestamp",
+    "fail-closed: unsupported_field",
+    "fail-closed: tool_class_wrong_relationship",
+    "fail-closed: wrong_allowed_signer_identity",
+    "fail-closed: duplicate_record_key"
+  ],
+  "negative_cases_rejected": 11,
+  "positive_case": "signed external INDEPENDENTLY_VERIFIED claim is cryptographically attributed to operator trust-store identity without claiming real-world independence",
+  "protocol": "VERIFICATION-001",
+  "result": "PASS",
+  "scope": "signed verification-record provenance bound to EVIDENCE-001 output; synthetic only"
+}
